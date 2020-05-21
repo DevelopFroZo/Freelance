@@ -2,7 +2,7 @@
 
 <html lang = "ru" xmlns:th = "http://www.thymeleaf.org">
 <head>
-    <meta charset = "UTF-8">
+    <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
     <title>Freelance | Add Answer</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -19,12 +19,12 @@
     <form>
 
         <div class="form-group">
-            <label for="answerDescription">РћРїРёСЃР°РЅРёРµ</label>
+            <label for="answerDescription">Описание</label>
             <textarea class="form-control" id="answerDescription" rows="3"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="basic-url">Р”РѕР±Р°РІС‚Рµ СЃСЃС‹Р»РєРё РЅР° РІР°С€Рё СЂР°Р±РѕС‚С‹</label>
+            <label for="basic-url">Добавте ссылки на ваши работы</label>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -42,14 +42,14 @@
         </div>
 
         <div class="form-group">
-            <label for="uploadFiles">Р—Р°РіСЂСѓР·РёС‚Рµ С„Р°Р№Р»С‹</label>
+            <label for="uploadFiles">Загрузите файлы</label>
 
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input"  id="photoFile01" accept="image/jpeg, image/png, image/jpg">
-                    <label class="custom-file-label" for="photoFile01" aria-describedby="photoDis">Р’С‹Р±РµСЂРµС‚Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ</label>
+                    <label class="custom-file-label" for="photoFile01" aria-describedby="photoDis">Выберете изображение</label>
                     <small id="photoDis" class="form-text text-muted">
-                        РџРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С„Р°Р№Р»С‹ С„РѕСЂРјР°С‚РѕРІ .jpg, .jpeg, .png.
+                        Поддерживаются файлы форматов .jpg, .jpeg, .png.
                     </small>
                 </div>
             </div>
@@ -57,20 +57,20 @@
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="photoFile02" accept="image/jpeg, image/png, image/jpg">
-                    <label class="custom-file-label" for="photoFile02" aria-describedby="photoDis2">Р’С‹Р±РµСЂРµС‚Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ</label>
+                    <label class="custom-file-label" for="photoFile02" aria-describedby="photoDis2">Выберете изображение</label>
                     <small id="photoDis2" class="form-text text-muted">
-                        РџРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С„Р°Р№Р»С‹ С„РѕСЂРјР°С‚РѕРІ .jpg, .jpeg, .png.
+                        Поддерживаются файлы форматов .jpg, .jpeg, .png.
                     </small>
                 </div>
             </div>
 
-            <!--        РљР°Рє РѕСЃС‚Р°РІРёС‚СЊ С‚РѕР»СЊРєРѕ Р·Р°РіСЂСѓР·РєСѓ Р°СЂС…РёРІРѕРІ РёР»Рё ?-->
+            <!--        Как оставить только загрузку архивов или ?-->
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="archiveFile">
-                    <label class="custom-file-label" for="archiveFile" aria-describedby="archiveDis">Р’С‹Р±РµСЂРµС‚Рµ Р°СЂС…РёРІ</label>
+                    <label class="custom-file-label" for="archiveFile" aria-describedby="archiveDis">Выберете архив</label>
                     <small id="archiveDis" class="form-text text-muted">
-                        РџРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С„Р°Р№Р»С‹ С„РѕСЂРјР°С‚РѕРІ .zip, .rar.
+                        Поддерживаются файлы форматов .zip, .rar.
                     </small>
                 </div>
             </div>
@@ -78,9 +78,9 @@
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="archiveFile">
-                    <label class="custom-file-label" for="archiveFile" aria-describedby="archiveDis">Р’С‹Р±РµСЂРµС‚Рµ РґРѕРєСѓРјРµРЅС‚</label>
+                    <label class="custom-file-label" for="archiveFile" aria-describedby="archiveDis">Выберете документ</label>
                     <small id="archiveDis" class="form-text text-muted">
-                        РџРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С„Р°Р№Р»С‹ С„РѕСЂРјР°С‚РѕРІ .docx, .xlsx.
+                        Поддерживаются файлы форматов .docx, .xlsx.
                     </small>
                 </div>
             </div>
@@ -88,16 +88,16 @@
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="documentFile">
-                    <label class="custom-file-label" for="documentFile" aria-describedby="documentDis">Р’С‹Р±РµСЂРµС‚Рµ РґРѕРєСѓРјРµРЅС‚</label>
+                    <label class="custom-file-label" for="documentFile" aria-describedby="documentDis">Выберете документ</label>
                     <small id="documentDis" class="form-text text-muted">
-                        РџРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С„Р°Р№Р»С‹ С„РѕСЂРјР°С‚РѕРІ .docx, .xlsx.
+                        Поддерживаются файлы форматов .docx, .xlsx.
                     </small>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
-        <button type="button" class="btn btn-light">РћС‚РјРµРЅР°</button>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <button type="button" class="btn btn-light">Отмена</button>
     </form>
 </div>
 

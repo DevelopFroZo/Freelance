@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+    <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
-    <a class="navbar-brand" th:href="@{/index}">Freelance</a>
+    <a class="navbar-brand" th:href="@{/}">Freelance</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/addTask}">Р”РѕР±Р°РІРёС‚СЊ Р·Р°РґР°РЅРё(add)</a>
+                <a class="nav-link" th:href="@{/tasks/add}">Добавить задание</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/addAnswer}">Р’СЃРµ Р·Р°РґР°РЅРёСЏ(all)</a>
+                <a class="nav-link" th:href="@{/}">Все задания</a>
             </li>
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" th:href="@{/job/loadall}"></a>-->
-<!--            </li>-->
         </ul>
     </div>
 </nav>

@@ -2,7 +2,7 @@
 
 <html lang = "ru" xmlns:th = "http://www.thymeleaf.org">
 <head>
-    <meta charset = "UTF-8">
+    <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
     <title>Freelance | Add Task</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -21,65 +21,65 @@
 <div class="container">
     <form>
         <div class="form-group">
-            <label for="taskName">РќР°Р·РІР°РЅРёРµ</label>
+            <label for="taskName">Название</label>
             <input type="text" class="form-control" id="taskName">
         </div>
 
         <div class="form-group">
-            <label for="taskDescription">РћРїРёСЃР°РЅРёРµ</label>
+            <label for="taskDescription">Описание</label>
             <textarea class="form-control" id="taskDescription" rows="3"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="checkCategories">Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ</label>
+            <label for="checkCategories">Выберите категорию</label>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkCategories1">
                 <label class="form-check-label" for="checkCategories1">
-                    РџСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ
+                    Программирование
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkCategories2">
                 <label class="form-check-label" for="checkCategories2">
-                    Р”РёР·Р°Р№РЅ Рё Р°СЂС‚
+                    Дизайн и арт
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkCategories3">
                 <label class="form-check-label" for="checkCategories3">
-                    РљР°С‚РµРіРѕСЂРёСЏ 3
+                    Категория 3
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkCategories4">
                 <label class="form-check-label" for="checkCategories4">
-                    РљР°С‚РµРіРѕСЂРёСЏ 4
+                    Категория 4
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkCategories5">
                 <label class="form-check-label" for="checkCategories5">
-                    РљР°С‚РµРіРѕСЂРёСЏ 5
+                    Категория 5
                 </label>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="paymentMethod">Р’С‹Р±РµСЂРёС‚Рµ СЃРїРѕСЃРѕР± РѕРїР»Р°С‚С‹</label>
+            <label for="paymentMethod">Выберите способ оплаты</label>
             <div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethodCard" value="card" checked>
-                    <label class="form-check-label" for="paymentMethodCard">РџРѕ РєР°СЂС‚Рµ</label>
+                    <label class="form-check-label" for="paymentMethodCard">По карте</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="paymentMethodCash" value="cash">
-                    <label class="form-check-label" for="paymentMethodCash">РќР°Р»РёС‡РЅС‹РјРё</label>
+                    <label class="form-check-label" for="paymentMethodCash">Наличными</label>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="inputBudget">Р’РІРµРґРёС‚Рµ СЃС‚РѕРёРјРѕСЃС‚СЊ Р·Р°РєР°Р·Р°</label>
+            <label for="inputBudget">Введите стоимость заказа</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
@@ -92,12 +92,12 @@
         </div>
 
         <div class="form-group">
-            <label for="inputDate">РЎСЂРѕРє РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµРґР»Р°Р№РЅР°</label>
+            <label for="inputDate">Срок окончания дедлайна</label>
             <input type="date" class="form-control col-5">
         </div>
 
-        <button type="submit" class="btn btn-primary">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
-        <button type="button" class="btn btn-light">РћС‚РјРµРЅР°</button>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <button type="button" class="btn btn-light">Отмена</button>
     </form>
 </div>
 

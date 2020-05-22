@@ -1,4 +1,4 @@
-package free.lance.model;
+package free.lance.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

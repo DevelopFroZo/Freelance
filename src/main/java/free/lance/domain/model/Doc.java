@@ -1,4 +1,4 @@
-package free.lance.model;
+package free.lance.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class Doc {
     @Enumerated( EnumType.STRING )
     private DocType docType;
 
-    public Doc(String name, DocType docType ){
+    public Doc( String name, DocType docType ){
         this.name = name;
         this.docType = docType;
     }

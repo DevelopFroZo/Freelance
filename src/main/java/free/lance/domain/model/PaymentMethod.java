@@ -1,4 +1,4 @@
-package free.lance.model;
+package free.lance.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table( name = "categories" )
-public class Category{
+@Table( name = "payment_methods" )
+public class PaymentMethod{
     // ID
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -23,7 +23,7 @@ public class Category{
     @Column
     private String name;
 
-    public Category( String name ){
+    public PaymentMethod( String name ){
         this.name = name;
     }
 }

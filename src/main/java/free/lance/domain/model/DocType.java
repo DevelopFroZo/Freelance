@@ -1,4 +1,4 @@
-package free.lance.model;
+package free.lance.domain.model;
 
 public enum DocType{
     IMAGE,

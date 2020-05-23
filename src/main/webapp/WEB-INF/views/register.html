@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
+    <title>Freelance | Register</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:src = "@{/resources/js/logout.js}"></script>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class = "container">
+    <div class = "row">
+        <h1>Register</h1>
+    </div>
+    <form id = "register-form" th:action = "@{/register}" method = "POST">
+        <div class = "form-group">
+            <label for = "name">Name</label>
+            <input id = "name" name = "name" class = "form-control" />
+        </div>
+        <div class = "form-group">
+            <label for = "description">Description</label>
+            <textarea id = "description" name = "description" class = "form-control"></textarea>
+        </div>
+        <div class = "form-group">
+            <label for = "login">Login</label>
+            <input id = "login" name = "login" class = "form-control" />
+        </div>
+        <div class = "form-group">
+            <label for = "password">Password</label>
+            <input type = "password" id = "password" name = "password" class = "form-control" />
+        </div>
+        <button type = "submit" class = "btn btn-primary">Register</button>
+    </form>
+</div>
+</body>
+</html>

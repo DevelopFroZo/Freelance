@@ -22,8 +22,4 @@ public class PaymentMethod{
     // Название
     @Column
     private String name;
-
-    public PaymentMethod( String name ){
-        this.name = name;
-    }
 }

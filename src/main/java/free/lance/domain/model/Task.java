@@ -31,17 +31,17 @@ public class Task{
     private String description;
 
     // Заказчик
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private User customer;
 
     // Категории
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JoinTable(
             name = "tasks_categories",
             joinColumns = @JoinColumn( name = "task_id" ),
             inverseJoinColumns = @JoinColumn( name = "category_id" )
     )
-    private List<Category> categories;
+    private Set<Category> categories;
 
     // Бюджет
     @Column
@@ -55,12 +55,8 @@ public class Task{
     @Column
     private LocalDate deadline;
 
-    // Сколько отведено на выполнение (в секундах)
-    @Column
-    private Long expires;
-
     // Способ оплаты
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private PaymentMethod paymentMethod;
 
     // Статус
@@ -68,10 +64,10 @@ public class Task{
     private Status status = Status.PROCESS;
 
     // Ссылки
-    @ElementCollection
+    @ElementCollection( fetch = FetchType.EAGER )
     private Set<String> links;
 
     // Документы
-    @ElementCollection
+    @ElementCollection( fetch = FetchType.EAGER )
     private Set<Doc> docs;
 }

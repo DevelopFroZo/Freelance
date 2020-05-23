@@ -23,9 +23,4 @@ public class Doc {
     // Тип документа
     @Enumerated( EnumType.STRING )
     private DocType docType;
-
-    public Doc( String name, DocType docType ){
-        this.name = name;
-        this.docType = docType;
-    }
 }

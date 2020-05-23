@@ -26,8 +26,8 @@ public class User implements UserDetails{
     private Long id;
 
     // Роль
-    @Column
-    private UserRole role = UserRole.ROLE_USER;
+    @Enumerated( EnumType.STRING )
+    private UserRole role;
 
     // Дата регистрации
     @Column
@@ -42,7 +42,7 @@ public class User implements UserDetails{
     private String description;
 
     // Логин
-    @Column
+    @Column( unique = true )
     private String login;
 
     // Пароль
@@ -51,13 +51,13 @@ public class User implements UserDetails{
 
     // Баланс
     @Column
-    private Long balance = 0L;
+    private Long balance;
 
     // Рейтинг пользователя, как заказчика
     // Хранится массивом чисел от 1 до 5
     // Считается следующиим образом:
     // Суммируются все числа и делятся на длину массива
-    @ElementCollection
+    @ElementCollection( fetch = FetchType.EAGER )
     @JoinTable( name = "user_customer_rating_values" )
     private List<Integer> customerRating;
 

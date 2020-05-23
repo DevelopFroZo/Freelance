@@ -21,6 +21,11 @@ public class TaskController{
     @Autowired
     private PaymentMethodService paymentMethodService;
 
+    @RequestMapping( value = "/task" )
+    private String task(){
+        return "tasks/task";
+    }
+
     @RequestMapping( value = "/add" )
     public String add( Model model ){
         Task task = new Task();

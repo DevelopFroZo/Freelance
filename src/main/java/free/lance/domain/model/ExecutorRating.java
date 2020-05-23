@@ -23,16 +23,16 @@ import java.util.List;
 public class ExecutorRating implements Serializable{
     // Composite ID
     @Id
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private User user;
 
     // Composite ID
     @Id
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private Category category;
 
     // Рейтинг
-    @ElementCollection
+    @ElementCollection( fetch = FetchType.EAGER )
     @JoinTable( name = "executor_ratings_values" )
     private List<Integer> rating;
 }

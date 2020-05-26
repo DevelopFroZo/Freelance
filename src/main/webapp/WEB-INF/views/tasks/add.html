@@ -3,7 +3,7 @@
 <html lang = "ru" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
-    <title>Freelance | Добавить задание</title>
+    <title>Freelance | Add task</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
@@ -14,35 +14,44 @@
 </head>
 
 <body>
-
 <div th:replace="../views/header :: header"></div>
-
-
 <div class="container">
-    <form method = "post" th:action = "@{/tasks}">
+    <form method = "post" th:action = "@{/tasks/}" th:object = "${task}">
         <div class = "form-group">
-            <label for = "taskName">Название</label>
-            <input type = "text" id = "taskName" class = "form-control">
+            <label for = "taskName">Name</label>
+            <input type = "text" id = "taskName" class = "form-control" th:field = "*{name}">
+            <p th:if = "${#fields.hasErrors( 'name' )}"
+               th:text = "${#fields.errors( 'name' ).get( 0 )}"
+               class = "text-danger"
+            ></p>
         </div>
 
         <div class = "form-group">
-            <label for = "taskDescription">Описание</label>
-            <textarea class = "form-control" id = "taskDescription" rows = "3"></textarea>
+            <label for = "taskDescription">Description</label>
+            <textarea class = "form-control" id = "taskDescription" rows = "3" th:field = "*{description}"></textarea>
+            <p th:if = "${#fields.hasErrors( 'description' )}"
+               th:text = "${#fields.errors( 'description' ).get( 0 )}"
+               class = "text-danger"
+            ></p>
         </div>
 
         <div class = "form-group">
             <label>Категории</label>
+            <p th:if = "${#fields.hasErrors( 'categories' )}"
+               th:text = "${#fields.errors( 'categories' ).get( 0 )}"
+               class = "text-danger"
+            ></p>
             <th:block th:each = "category, iter:${categories}">
                 <div>
-                    <input th:id = "${'category' + iter}" type = "checkbox" th:value = "${category.id}">
-                    <label th:for = "${'category' + iter}" th:text = "${category.name}"></label>
+                    <input th:id = "${'category' + iter.index}" type = "checkbox" th:value = "${category.id}" th:field = "*{categories}">
+                    <label th:for = "${'category' + iter.index}" th:text = "${category.name}"></label>
                 </div>
             </th:block>
         </div>
 
         <div class = "form-group">
-            <label for = "paymentMethod">Выберите способ оплаты</label>
-            <select id = "paymentMethod" class = "form-control">
+            <label for = "paymentMethod">Payment method</label>
+            <select id = "paymentMethod" class = "form-control" th:field = "*{paymentMethod}">
                 <option th:each = "paymentMethod:${paymentMethods}"
                         th:value = "${paymentMethod.id}"
                         th:text = "${paymentMethod.name}"
@@ -50,28 +59,30 @@
             </select>
         </div>
 
-<!--        <div class="form-group">-->
-<!--            <label for="inputBudget">Введите стоимость заказа</label>-->
-<!--            <div class="input-group">-->
-<!--                <div class="input-group-prepend">-->
-<!--                    <span class="input-group-text">$</span>-->
-<!--                </div>-->
-<!--                <input type="text" class="form-control col-3" id="inputBudget" placeholder="5 000">-->
-<!--                <div class="input-group-append">-->
-<!--                    <span class="input-group-text">.00</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class = "form-group">
+            <label for = "inputBudget">Budget</label>
+            <div class = "input-group">
+                <input type = "text" class = "form-control col-3" id = "inputBudget" placeholder = "5 000" th:field = "*{budget}">
+                <div class = "input-group-append">
+                    <span class = "input-group-text">RUB</span>
+                </div>
+            </div>
+            <div th:if = "${#fields.hasErrors( 'budget' )}">
+                <p th:each = "err:${#fields.errors( 'budget' )}"
+                   th:text = "${err}"
+                   class = "text-danger"
+                ></p>
+            </div>
+        </div>
 
-<!--        <div class="form-group">-->
-<!--            <label for="inputDate">Срок окончания дедлайна</label>-->
-<!--            <input id = "inputDate" type="date" class="form-control col-5">-->
-<!--        </div>-->
+        <div class = "form-group">
+            <label for = "inputDate">Deadline</label>
+            <input id = "inputDate" type = "date" class = "form-control col-5" th:field = "*{deadline}">
+        </div>
 
-<!--        <button type="submit" class="btn btn-primary">Сохранить</button>-->
-<!--        <button type="button" class="btn btn-light">Отмена</button>-->
+        <button type = "submit" class = "btn btn-primary">Сохранить</button>
+        <button type = "button" class = "btn btn-light">Отмена</button>
     </form>
 </div>
-
 </body>
 </html>

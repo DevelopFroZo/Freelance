@@ -20,19 +20,20 @@ import java.util.List;
 // хранится массив чисел
 // Считается аналогичным способом, как рейтинг
 // у заказчика
-public class ExecutorRating implements Serializable{
-    // Composite ID
+public class ExecutorRating{
     @Id
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Long id;
+    
+    @ManyToOne( fetch = FetchType.EAGER )
     private User user;
 
-    // Composite ID
-    @Id
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @ManyToOne( fetch = FetchType.EAGER )
     private Category category;
 
     // Рейтинг
     @ElementCollection( fetch = FetchType.EAGER )
     @JoinTable( name = "executor_ratings_values" )
+    @OrderColumn( name = "number" )
     private List<Integer> rating;
 }

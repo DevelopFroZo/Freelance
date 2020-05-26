@@ -24,9 +24,13 @@
             <div class = "card">
                 <div class = "card-body">
                     <h5 class = "card-title" th:text = "${task.name}">Task name</h5>
-                    <h6 class = "card-subtitle mb-2 text-muted" >Categories</h6>
+                    <h6 class = "card-subtitle mb-2 text-muted">
+                        <span th:each = "category:${task.categories}"
+                              th:text = "${category.name} + ' '"
+                        ></span>
+                    </h6>
                     <p class="card-text" th:text = "${task.description}">Description.</p>
-                    <p class="card-text" th:text = "${task.customer.name}"> Customer </p>
+                    <p class="card-text" th:text = "${task.customer.name} + ', ' + ${task.rating}"> Customer </p>
                     <h5 class="card-text" th:text = "${task.budget} + ' rub'"> 5 000</h5>
 <!--                    <h5 class="card-text" th:text = "${task.budget}"> Rate </h5>-->
                     <a href="#" class="btn btn-primary">See more</a>

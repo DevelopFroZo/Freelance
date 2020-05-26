@@ -11,13 +11,33 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script th:src = "@{/resources/js/logout.js}"></script>
+    <script th:src = "@{/resources/js/api.js}"></script>
+    <script th:src = "@{/resources/js/task.js}"></script>
+
+    <script th:inline = "javascript">
+        /*<![CDATA[*/
+        const root = /*[[@{/}]]*/ "default";
+        /*]]>*/
+    </script>
 </head>
 
 <body>
 <div th:replace = "../views/header :: header"></div>
 
 <div class = "container">
-
+<!--    Customer name: <span th:text = "${task.full.customer.name}"></span> <br>-->
+<!--    Customer rating <span th:text = "${task.rating}"></span> <br>-->
+<!--    Categories:-->
+<!--    <ul>-->
+<!--        <li th:each = "category:${task.full.categories}"-->
+<!--            th:text = "${category.name}"-->
+<!--        ></li>-->
+<!--    </ul>-->
+<!--    Customer full: <span th:text = "${task.full.customer.toString()}"></span> <br>-->
+<!--    Solutions:-->
+<!--    <span id = "solutionsUnauthorized" class = "hidden">Please login to see solutions!</span>-->
+<!--    <span id = "solutionsEmpty" class = "hidden">No solutions</span>-->
+<!--    <ul id = "solutionsList" class = "hidden"></ul>-->
     <div class="row">
 
         <p>Categories</p>

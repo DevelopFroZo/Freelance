@@ -1,13 +1,15 @@
 package free.lance.web.controller;
 
-import free.lance.domain.model.Task;
+import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;
-import free.lance.domain.model.UserRole;
 import free.lance.domain.service.TaskService;
 import free.lance.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,9 +32,17 @@ public class RootController{
             Model model,
             Pageable page
     ){
-        Page<Task> tasks = this.taskService.findAll( page );
+        Page<TaskCard> taskCards;
 
-        model.addAttribute( "tasks", tasks );
+        taskCards = this.taskService.findAllForCard(
+                new PageRequest(
+                        page.getPageNumber(),
+                        page.getPageSize(),
+                        JpaSort.unsafe( Sort.Direction.DESC, "avg( cr )" )
+                )
+        );
+
+        model.addAttribute( "tasks", taskCards );
 
         return "index";
     }

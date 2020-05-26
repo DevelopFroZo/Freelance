@@ -72,7 +72,7 @@
         </div>
         <div class="card-body">
             <p class="card-text">Description answer.</p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAnswer">
                 See more
             </button>
         </div>
@@ -82,25 +82,90 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-dialog-centering" id="modalAnswer" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="modalSolution">Solution</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <p class="model-text">Description</p>
+
+                    <h5>Links</h5>
+                    <a href = "#">Link 1</a>
+                    <a href = "#">Link 2</a>
+                    <a href = "#">Link 3</a>
+
+                    <h5>Images</h5>
+                    <div class="row">
+                        <img src="" class="rounded float-left" alt="img-1">
+                        <img src="" class="rounded float-right" alt="img-2">
+                    </div>
+
+                    <h5>Documents</h5>
+                    <a href="#">Doc 1</a>
+                    <a href="#">Doc 2</a>
+
+                    <h5>Archive</h5>
+                    <a href="#">Link 1</a>
+
+                    <div>
+                        <h6>Executor</h6>
+                        <h5>User name</h5>
+                        <p>Description</p>
+                        <div id="rateUser">
+                            <div class = "row">
+                                <p class="col-6">Category name</p>
+                                <p class="col-6">4,8</p>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Choose this solution</button>
                 </div>
             </div>
         </div>
     </div>
+
+<!--    &lt;!&ndash; Modal &ndash;&gt;-->
+<!--    <div class="modal fade .modal-sm" id="modalRate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="modalRating">Executor rating</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class = "modal-body">-->
+<!--                    <p>Put a rating for the work done by category.</p>-->
+<!--                    <div class = "input-group">-->
+<!--                        <div class = "row">-->
+<!--                            <h5 class = "col-6">Category</h5>-->
+<!--                            <h5 class = "col-6">Rate</h5>-->
+<!--                        </div>-->
+
+<!--                        <div class = "row">-->
+<!--                            <p class = "col-6" id = "inputRateByCategory">Category name</p>-->
+<!--                            <input type = "text" class = "col-6" id = "inputRate" placeholder = "5">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </body>
 </html>

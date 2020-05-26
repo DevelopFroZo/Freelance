@@ -18,45 +18,47 @@
 <body>
 <div th:replace="../views/header :: header"></div>
 
-<nav aria-label = "Page navigation example" th:if = "${tasks.totalPages > 1}">
-    <span>Page</span>
-    <span th:text = "${tasks.number + 1}"></span>
-    <span>of</span>
-    <span th:text = "${tasks.totalPages}"></span>
-    <ul class = "pagination">
-        <li class = "page-item disabled" th:if = "${tasks.number == 0}">
-            <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
-        </li>
-        <li class = "page-item" th:if = "${tasks.number > 0}">
-            <a class = "page-link" th:href = "@{/( page = ${tasks.number - 1} )}">Previous</a>
-        </li>
-<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-        <li class = "page-item disabled" th:if = "${tasks.number == tasks.totalPages - 1}">
-            <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
-        </li>
-        <li class = "page-item" th:if = "${tasks.number < tasks.totalPages - 1}">
-            <a class = "page-link" th:href = "@{/( page = ${tasks.number + 1} )}">Next</a>
-        </li>
-    </ul>
-</nav>
-
 <div class="container">
     <div class="row">
         <div class = "col-xs-12 col-sm-6 col-md-4 col-lg-4" th:each = "task:${tasks}">
             <div class = "card">
                 <div class = "card-body">
-                    <h5 class = "card-title" th:text = "${task.name}">Название карточки</h5>
-                    <h6 class = "card-subtitle mb-2 text-muted">Подзаголовок карты</h6>
-                    <p class="card-text" th:text = "${task.description}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Ссылка карты</a>
-                    <a href="#" class="card-link">Другая ссылка</a>
+                    <h5 class = "card-title" th:text = "${task.name}">Task name</h5>
+                    <h6 class = "card-subtitle mb-2 text-muted" >Categories</h6>
+                    <p class="card-text" th:text = "${task.description}">Description.</p>
+                    <p class="card-text" th:text = "${task.customer.name}"> Customer </p>
+                    <h5 class="card-text" th:text = "${task.budget} + ' rub'"> 5 000</h5>
+<!--                    <h5 class="card-text" th:text = "${task.budget}"> Rate </h5>-->
+                    <a href="#" class="btn btn-primary">See more</a>
                     <a class = "hidden cardLink" th:href = "@{/tasks/task( id = ${task.id} )}"></a>
                 </div>
             </div>
         </div>
     </div>
+
+    <nav aria-label = "Page navigation example" th:if = "${tasks.totalPages > 1}">
+        <span>Page</span>
+        <span th:text = "${tasks.number + 1}"></span>
+        <span>of</span>
+        <span th:text = "${tasks.totalPages}"></span>
+        <ul class = "pagination">
+            <li class = "page-item disabled" th:if = "${tasks.number == 0}">
+                <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
+            </li>
+            <li class = "page-item" th:if = "${tasks.number > 0}">
+                <a class = "page-link" th:href = "@{/( page = ${tasks.number - 1} )}">Previous</a>
+            </li>
+            <!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+            <!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+            <!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+            <li class = "page-item disabled" th:if = "${tasks.number == tasks.totalPages - 1}">
+                <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
+            </li>
+            <li class = "page-item" th:if = "${tasks.number < tasks.totalPages - 1}">
+                <a class = "page-link" th:href = "@{/( page = ${tasks.number + 1} )}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 </div>
 </body>

@@ -3,7 +3,7 @@
 <html lang = "ru" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
-    <title>Freelance | Добавить задание</title>
+    <title>Freelance | Add task</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
@@ -21,17 +21,17 @@
 <div class="container">
     <form method = "post" th:action = "@{/tasks}">
         <div class = "form-group">
-            <label for = "taskName">Название</label>
+            <label for = "taskName">Name</label>
             <input type = "text" id = "taskName" class = "form-control">
         </div>
 
         <div class = "form-group">
-            <label for = "taskDescription">Описание</label>
+            <label for = "taskDescription">Description</label>
             <textarea class = "form-control" id = "taskDescription" rows = "3"></textarea>
         </div>
 
         <div class = "form-group">
-            <label>Категории</label>
+            <label>Categories</label>
             <th:block th:each = "category, iter:${categories}">
                 <div>
                     <input th:id = "${'category' + iter}" type = "checkbox" th:value = "${category.id}">
@@ -41,7 +41,9 @@
         </div>
 
         <div class = "form-group">
-            <label for = "paymentMethod">Выберите способ оплаты</label>
+            <label for = "paymentMethod">
+                Select a payment method
+            </label>
             <select id = "paymentMethod" class = "form-control">
                 <option th:each = "paymentMethod:${paymentMethods}"
                         th:value = "${paymentMethod.id}"
@@ -51,7 +53,7 @@
         </div>
 
 <!--        <div class="form-group">-->
-<!--            <label for="inputBudget">Введите стоимость заказа</label>-->
+<!--            <label for="inputBudget">Enter order value</label>-->
 <!--            <div class="input-group">-->
 <!--                <div class="input-group-prepend">-->
 <!--                    <span class="input-group-text">$</span>-->
@@ -64,12 +66,12 @@
 <!--        </div>-->
 
 <!--        <div class="form-group">-->
-<!--            <label for="inputDate">Срок окончания дедлайна</label>-->
+<!--            <label for="inputDate">Deadline</label>-->
 <!--            <input id = "inputDate" type="date" class="form-control col-5">-->
 <!--        </div>-->
 
-<!--        <button type="submit" class="btn btn-primary">Сохранить</button>-->
-<!--        <button type="button" class="btn btn-light">Отмена</button>-->
+<!--        <button type="submit" class="btn btn-primary">Save</button>-->
+<!--        <button type="button" class="btn btn-light">Cancel</button>-->
     </form>
 </div>
 

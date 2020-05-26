@@ -17,7 +17,73 @@
 <div th:replace = "../views/header :: header"></div>
 
 <div class = "container">
-    Hello there!
+
+    <div class="row">
+        <h5 class="col-2"> Categories</h5>
+        <p>Categories</p>
+    </div>
+
+    <div class="row">
+        <h2 class="col-8">Task name</h2>
+        <h5 class="col-2">Status</h5>
+        <p class="col-2">Status</p>
+    </div>
+
+    <p>Description.</p>
+
+    <div class="row">
+        <h5 class="col-2">Customer</h5>
+        <p>Customer</p>
+    </div>
+
+    <div class="row">
+        <h5 class="col-2">Deadline</h5>
+        <p>Deadline</p>
+    </div>
+
+    <div class="row">
+        <h5 class="col-2">Payment method</h5>
+        <p>Payment method</p>
+    </div>
+
+    <p class="text-danger">5 000</p>
+
+    <div class="card">
+        <div class="card-header">
+            <p>User who asked</p>
+        </div>
+        <div class="card-body">
+<!--            <h5 class="card-title">Специальный заголовок</h5>-->
+            <p class="card-text">Description answer.</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                See more
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -32,7 +32,7 @@ public class Task{
 
     // Описание
     @Column
-    @NotBlank( message = "Must be not empty" )
+    @NotBlank( message   = "Must be not empty" )
     private String description;
 
     // Заказчик

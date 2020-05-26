@@ -8,8 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface SolutionRepository extends JpaRepository<Solution, Long>{
-    @Query(
-            "select s from Solution as s where s.task.id = :id"
-    )
+    @Query( "select s from Solution as s where s.task.id = :id" )
     List<Solution> findAllByTaskId( @Param( "id" ) Long taskId );
+
+    @Query( "select s from Solution as s where s.task.id = :taskId and s.executor.id = :userId" )
+    Solution findOneByTaskIdAndUserId( @Param( "taskId" ) Long taskId, @Param( "userId" ) Long userId );
 }

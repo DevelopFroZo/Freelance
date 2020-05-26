@@ -21,7 +21,7 @@ public class Solution{
     private Long id;
 
     // Задание
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @ManyToOne( fetch = FetchType.EAGER )
     private Task task;
 
     // Описание
@@ -37,6 +37,6 @@ public class Solution{
     private Set<Doc> docs;
 
     // Исполнитель
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @ManyToOne( fetch = FetchType.EAGER )
     private User executor;
 }

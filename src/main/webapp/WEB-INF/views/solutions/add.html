@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang = "ru" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
+    <title>Freelance | Add solution</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:src = "@{/resources/js/logout.js}"></script>
+</head>
+
+<body>
+<div th:replace="../views/header :: header"></div>
+<div class="container">
+    <form th:action = "@{/solutions/( task_id = ${param.get( 'task_id' )} )}" th:object = "${solution}" method = "post">
+        Description:
+        <input type = "text" th:field = "*{description}">
+        <button type = "submit">Add solution</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

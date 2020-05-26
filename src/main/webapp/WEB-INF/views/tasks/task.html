@@ -39,29 +39,30 @@
 <!--    <span id = "solutionsEmpty" class = "hidden">No solutions</span>-->
 <!--    <ul id = "solutionsList" class = "hidden"></ul>-->
     <div class="row">
-
-        <p>Categories</p>
+        <span th:each = "category:${task.full.categories}"
+              th:text = "${category.name} + ' '"
+        ></span>
     </div>
 
     <div class="row">
-        <h2 class="col-8">Task name</h2>
+        <h2 class="col-8" th:text = "${task.full.name}">Task name</h2>
     </div>
 
-    <p>Description.</p>
+    <p th:text = "${task.full.description}">Description.</p>
 
     <div class="row">
         <h5 class="col-2">Customer</h5>
-        <p>Customer</p>
+        <p th:text = "${task.full.customer.name} + ', ' + ${task.rating}">Customer</p>
     </div>
 
     <div class="row">
         <h5 class="col-2">Deadline</h5>
-        <p>Deadline</p>
+        <p th:text = "${task.full.deadline}">Deadline</p>
     </div>
 
     <div class="row">
         <h5 class="col-2">Payment method</h5>
-        <p>Payment method</p>
+        <p th:text = "${task.full.paymentMethod.name}">Payment method</p>
     </div>
 
     <p class="text-danger">5 000</p>

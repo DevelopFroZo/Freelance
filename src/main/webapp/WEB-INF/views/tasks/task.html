@@ -38,6 +38,8 @@
 <!--    <span id = "solutionsUnauthorized" class = "hidden">Please login to see solutions!</span>-->
 <!--    <span id = "solutionsEmpty" class = "hidden">No solutions</span>-->
 <!--    <ul id = "solutionsList" class = "hidden"></ul>-->
+    <input type = "hidden" id = "taskId" th:value = "${task.full.id}">
+    <input type = "hidden" id = "taskCustomerId" th:value = "${task.full.customer.id}">
     <div class="row">
         <span th:each = "category:${task.full.categories}"
               th:text = "${category.name} + ' '"
@@ -65,68 +67,51 @@
         <p th:text = "${task.full.paymentMethod.name}">Payment method</p>
     </div>
 
-    <p class="text-danger">5 000</p>
+    <p class="text-danger" th:text = "${task.full.budget}">5 000</p>
 
-    <div class="card">
-        <div class="card-header">
-            <p>User who answer</p>
-        </div>
-        <div class="card-body">
-            <p class="card-text">Description answer.</p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAnswer">
-                See more
-            </button>
-        </div>
-    </div>
+    <div id = "solutionsCards"></div>
 
     <!-- Modal -->
-    <div class="modal fade modal-dialog-centering" id="modalAnswer" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalSolution">Solution</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+    <div class = "modal fade modal-dialog-centering" id = "modalAnswer" tabindex = "-2" role = "dialog" aria-labelledby = "exampleModalLabel" aria-hidden = "true">
+        <div class = "modal-dialog">
+            <div class = "modal-content">
+                <div class = "modal-header">
+                    <h5 class = "modal-title">Solution</h5>
+                    <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close">
+                        <span aria-hidden = "true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <p class="model-text">Description</p>
+                <div class = "modal-body">
+                    <p class = "model-text" id = "solutionDescription">Description</p>
 
-                    <h5>Links</h5>
-                    <a href = "#">Link 1</a>
-                    <a href = "#">Link 2</a>
-                    <a href = "#">Link 3</a>
+<!--                    <h5>Links</h5>-->
+<!--                    <a href = "#">Link 1</a>-->
+<!--                    <a href = "#">Link 2</a>-->
+<!--                    <a href = "#">Link 3</a>-->
 
-                    <h5>Images</h5>
-                    <div class="row">
-                        <img src="" class="rounded float-left" alt="img-1">
-                        <img src="" class="rounded float-right" alt="img-2">
-                    </div>
+<!--                    <h5>Images</h5>-->
+<!--                    <div class="row">-->
+<!--                        <img src="" class="rounded float-left" alt="img-1">-->
+<!--                        <img src="" class="rounded float-right" alt="img-2">-->
+<!--                    </div>-->
 
-                    <h5>Documents</h5>
-                    <a href="#">Doc 1</a>
-                    <a href="#">Doc 2</a>
+<!--                    <h5>Documents</h5>-->
+<!--                    <a href="#">Doc 1</a>-->
+<!--                    <a href="#">Doc 2</a>-->
 
-                    <h5>Archive</h5>
-                    <a href="#">Link 1</a>
+<!--                    <h5>Archive</h5>-->
+<!--                    <a href="#">Link 1</a>-->
 
                     <div>
                         <h6>Executor</h6>
-                        <h5>User name</h5>
-                        <p>Description</p>
-                        <div id="rateUser">
-                            <div class = "row">
-                                <p class="col-6">Category name</p>
-                                <p class="col-6">4,8</p>
-                            </div>
-                        </div>
+                        <h5 id = "solutionExecutorName">User name</h5>
+                        <p id = "solutionExecutorDescription">User description</p>
+                        <div id = "rateUser"></div>
                     </div>
-
-
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Choose this solution</button>
+                <div class = "modal-footer">
+                    <button type = "button" class = "btn btn-secondary" data-dismiss = "modal">Close</button>
+                    <button type = "button" class = "btn btn-primary hidden" id = "chooseSolution">Choose this solution</button>
                 </div>
             </div>
         </div>

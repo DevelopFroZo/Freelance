@@ -2,20 +2,14 @@ package free.lance.web.controller;
 
 import free.lance.domain.model.*;
 import free.lance.domain.response.TaskFull;
-import free.lance.domain.service.CategoryService;
-import free.lance.domain.service.PaymentMethodService;
-import free.lance.domain.service.TaskService;
-import free.lance.domain.service.UserService;
+import free.lance.domain.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -34,6 +28,9 @@ public class TaskController{
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SolutionService solutionService;
 
     @RequestMapping( value = "/task" )
     private String task(
@@ -91,5 +88,31 @@ public class TaskController{
             this.userService.decBalance( Long.valueOf( task.getBudget() ), customer.getId() );
 
         return "redirect:/";
+    }
+
+    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
+    @RequestMapping( "/set_solution" )
+    @ResponseBody
+    public boolean setSolution(
+            @RequestParam( "task_id" ) Task task,
+            @RequestParam( "solution_id" ) Solution solution,
+            Authentication authentication
+    ){
+        User current = (User) authentication.getPrincipal();
+
+        System.out.println( task );
+        System.out.println( solution );
+
+        // FIXME redirect to error
+        if( current.getId() != task.getId() );
+
+        // FIXME redirect to error
+        if( task.getSolution() != null );
+
+        this.taskService.setSolution( task.getId(), solution );
+        this.taskService.close( task.getId() );
+        this.userService.incBalance( solution.getExecutor().getId(), Long.valueOf( task.getBudget() ) );
+
+        return true;
     }
 }

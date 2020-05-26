@@ -1,12 +1,34 @@
-async function fillSolutions( solutions ){
-    if( solutions.length === 1 && solutions[0] === null )
-        return document.getElementById( "solutionsEmpty" ).classList.remove( "hidden" );
+let solutions_;
 
-    const userIds = solutions.map( ( { executor: { id } } ) => id );
+function fillModal( index ){
+    const solution = solutions_[ index ];
+    const executor = solution.executor;
+    const rateUser = document.getElementById( "rateUser" );
+
+    document.getElementById( "solutionDescription" ).innerHTML = solution.description;
+    document.getElementById( "solutionExecutorName" ).innerHTML = executor.name;
+    document.getElementById( "solutionExecutorDescription" ).innerHTML = executor.description;
+
+    rateUser.innerHTML = "";
+
+    for( let key in executor.rating )
+        rateUser.innerHTML +=
+            `<div class = "row">
+                <p class = "col-6">${key}</p>
+                <p class = "col-6">${executor.rating[ key ]}</p>
+            </div>`;
+}
+
+async function fillSolutions(){
+    // FIXME
+    // if( solutions_.length === 1 && solutions_[0] === null )
+    //     return document.getElementById( "solutionsEmpty" ).classList.remove( "hidden" );
+
+    const userIds = solutions_.map( ( { executor: { id } } ) => id );
     const executorsRatings = await API.executorRating.getByUserIds( userIds );
-    const solutionsList = document.getElementById( "solutionsList" );
+    const solutionsCards = document.getElementById( "solutionsCards" );
 
-    for( let solution of solutions ){
+    for( let solution of solutions_ ){
         solution.executor.rating = {};
 
         if( executorsRatings !== 403 )
@@ -15,30 +37,53 @@ async function fillSolutions( solutions ){
                     solution.executor.rating[ executorRating.category ] = executorRating.rating;
     }
 
-    solutionsList.classList.remove( "hidden" );
+    solutionsCards.classList.remove( "hidden" );
 
-    // FIXME change to normal solutions
-    for( let solution of solutions ){
-        const li = document.createElement( "li" );
-        solutionsList.appendChild( li );
+    for( let [ i, solution ] of solutions_.entries() )
+        solutionsCards.innerHTML +=
+            `<div class = "card">
+                <div class = "card-header">
+                    <p>${solution.executor.name}</p>
+                </div>
+                <div class = "card-body">
+                    <p class = "card-text">${solution.description}</p>
+                    <button type = "button" class = "btn btn-primary" data-toggle = "modal" data-target = "#modalAnswer" onclick = "fillModal( ${i} )">
+                        See more
+                    </button>
+                </div>
+            </div>`;
+}
 
-        const pre = document.createElement( "pre" );
-        li.appendChild( pre );
+async function chooseSolutionFunc( taskId, solutionId ){
+    const result = await API.tasks.setSolution( taskId, solutionId );
 
-        const code = document.createElement( "code" );
-        pre.appendChild( code );
-        pre.innerHTML = JSON.stringify( solution, null, 2 );
-    }
+    if( result === true )
+        window.open( "/" );
+    else
+        alert( "Something wrong" );
 }
 
 async function index(){
     const id = ( new URLSearchParams( window.location.search ) ).get( "id" );
-    const solutions = await API.solutions.getByTaskId( root, id );
+    solutions_ = await API.solutions.getByTaskId( root, id );
+    const currentUser = await API.users.getCurrent();
 
-    if( solutions === 403 )
-        document.getElementById( "solutionsUnauthorized" ).classList.remove( "hidden" );
-    else
-        fillSolutions( solutions );
+    if( solutions_ === 403 );
+        // FIXME
+        // document.getElementById( "solutionsUnauthorized" ).classList.remove( "hidden" );
+    else{
+        const taskCustomerId = parseInt( document.getElementById( "taskCustomerId" ).value );
+
+        if( taskCustomerId === currentUser.id ){
+            const taskId = parseInt( document.getElementById( "taskId" ).value );
+            const chooseSolution = document.getElementById( "chooseSolution" );
+
+            chooseSolution.addEventListener( "click", () => chooseSolutionFunc( taskId, taskCustomerId ) );
+            chooseSolution.classList.remove( "hidden" );
+        }
+
+        fillSolutions();
+    }
 }
 
 window.addEventListener( "load", index );

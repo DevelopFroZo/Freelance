@@ -31,4 +31,8 @@ public class UserService{
     public void decBalance( Long value, Long id ){
         this.userRepository.decBalance( value, id );
     }
+
+    public void incBalance( Long id, Long value ){
+        this.userRepository.incBalance( id, value );
+    }
 }

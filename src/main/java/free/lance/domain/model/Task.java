@@ -80,4 +80,8 @@ public class Task{
     // Документы
     @ElementCollection( fetch = FetchType.EAGER )
     private Set<Doc> docs;
+
+    // Отмеченное решение
+    @ManyToOne( fetch = FetchType.EAGER )
+    private Solution solution;
 }

@@ -1,5 +1,6 @@
 package free.lance.domain.service;
 
+import free.lance.domain.model.Solution;
 import free.lance.domain.model.Task;
 import free.lance.domain.response.TaskCard;
 import free.lance.domain.repository.TaskRepository;
@@ -31,5 +32,13 @@ public class TaskService{
         }
 
         return true;
+    }
+
+    public void setSolution( Long id, Solution solution ){
+        this.taskRepository.setSolution( id, solution );
+    }
+
+    public void close( Long id ){
+        this.taskRepository.close( id );
     }
 }

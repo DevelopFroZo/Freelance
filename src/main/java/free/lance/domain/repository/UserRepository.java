@@ -19,4 +19,12 @@ public interface UserRepository extends JpaRepository<User, Long>{
             @Param( "value" ) Long value,
             @Param( "id" ) Long id
     );
+
+    @Modifying
+    @Transactional
+    @Query( "update User as u set u.balance = u.balance + :value where u.id = :id" )
+    void incBalance(
+            @Param( "id" ) Long id,
+            @Param( "value" ) Long value
+    );
 }

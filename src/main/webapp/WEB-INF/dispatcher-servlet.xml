@@ -57,6 +57,7 @@
                 <bean class = "free.lance.domain.converter.IdsToCategories" />
                 <bean class = "free.lance.domain.converter.IdToTaskFull" />
                 <bean class = "free.lance.domain.converter.TaskIdToSolutions" />
+                <bean class = "free.lance.domain.converter.IdToSolution" />
             </list>
         </property>
     </bean>

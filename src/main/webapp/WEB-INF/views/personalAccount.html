@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script th:src = "@{/resources/js/logout.js}"></script>
+    <script th:src = "@{/resources/js/personalAccount.js}"></script>
 </head>
 <body>
 
@@ -41,8 +42,12 @@
         <h4 class = "col-2 text-danger">5000</h4>
     </div>
         
+    <div class= "row justify-content-end">
+        <input class = "col-4" type = "text" id = "moreBalance">
+    </div>
+    
     <div class = "row justify-content-end" >
-        <button class = "col-4 btn btn-primary">
+        <button id = "incBalance" class = "col-4 btn btn-primary">
             Replenish balance
         </button>
     </div>

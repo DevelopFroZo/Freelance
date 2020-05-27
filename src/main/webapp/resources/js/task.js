@@ -83,8 +83,8 @@ async function index(){
     if( typeof error === "string" ){
         if( error === "a_customer" )
             alert( "Customer doesn't add a solution to self task" );
-        else if( error === "already_chosen" )
-            alert( "Solution for this task already chosen" );
+        else if( error === "already_added" )
+            alert( "Solution for this task already added" );
     }
 
     if( solutions_ === 403 )

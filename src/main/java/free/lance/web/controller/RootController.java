@@ -1,7 +1,7 @@
 package free.lance.web.controller;
 
-import free.lance.domain.model.ExecutorRating;
 import free.lance.domain.response.ExecutorRatingExtended;
+import free.lance.domain.response.ExecutorRatingExtended2;
 import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;
 import free.lance.domain.service.ExecutorRatingService;
@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -119,9 +118,10 @@ public class RootController{
 
     @RequestMapping( value = "rating_executors" )
     public String ratingExecutors(
-            Model model
+            Model model,
+            Pageable page
     ){
-        List<ExecutorRating> executorsRatings = this.executorRatingService.findAll();
+        Page<ExecutorRatingExtended2> executorsRatings = this.executorRatingService.findAll( page );
 
         model.addAttribute( "executorsRating", executorsRatings );
 

@@ -1,12 +1,13 @@
 package free.lance.domain.service;
 
-import free.lance.domain.model.ExecutorRating;
 import free.lance.domain.repository.ExecutorRatingRepository;
 import free.lance.domain.response.ExecutorRatingExtended;
+import free.lance.domain.response.ExecutorRatingExtended2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -18,7 +19,7 @@ public class ExecutorRatingService{
         return this.executorRatingRepository.findAllByUserIn( userIds );
     }
 
-    public List<ExecutorRating> findAll(){
-        return this.executorRatingRepository.findAll();
+    public Page<ExecutorRatingExtended2> findAll( Pageable page ){
+        return this.executorRatingRepository.findAllExtended( page );
     }
 }

@@ -48,7 +48,7 @@ public class SolutionController{
         Solution solution = this.solutionService.findOneByTaskIdAndUserId( task.getId(), executor.getId() );
 
         if( solution != null )
-            return "redirect:/tasks/task?id=" + task.getId() + "&error=already_choosen";
+            return "redirect:/tasks/task?id=" + task.getId() + "&error=already_added";
 
         model.addAttribute( "solution", new Solution() );
 

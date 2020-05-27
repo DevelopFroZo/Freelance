@@ -34,7 +34,41 @@
                class = "text-danger"
             ></p>
         </div>
+        
+         <div class="form-group">
+            <label for="basic-url">Add links for your works</label>
 
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="url-1"  maxlength="50">https://</span>
+                </div>
+                <input type="text" class="form-control" id="answerUrl1" aria-describedby="url-1">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="url-2">https://</span>
+                </div>
+                <input type="text" class="form-control" id="answerUrl2" aria-escribedby="url-2">
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label for="uploadFiles">Upload files</label>
+
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="archiveFile">
+                    <label class="custom-file-label" for="archiveFile" aria-describedby="archiveDis">
+                        Choose archive
+                    </label>
+                    <small id="archiveDis" class="form-text text-muted">
+                        Supported file formats .zip, .rar.
+                    </small>
+                </div>
+            </div>
+        </div>
+        
         <div class = "form-group">
             <label>Категории</label>
             <p th:if = "${#fields.hasErrors( 'categories' )}"

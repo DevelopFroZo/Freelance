@@ -21,6 +21,12 @@
             </li>
             <li sec:authorize = "isAuthenticated()">
                 <p class="navbar-text">
+                    <a class="nav-link" th:href="@{/persanal_account}">All tasks</a>
+                </p>
+                <form id = "logout-form" th:action = "@{/logout}" method = "post"></form>
+            </li>
+            <li sec:authorize = "isAuthenticated()">
+                <p class="navbar-text">
                     Welcome
                     <span sec:authentication = "name"></span>
                     <a id = "logout" href = "#">Log Out</a>

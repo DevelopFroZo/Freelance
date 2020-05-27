@@ -20,9 +20,8 @@ function fillModal( index ){
 }
 
 async function fillSolutions(){
-    // FIXME
-    // if( solutions_.length === 1 && solutions_[0] === null )
-    //     return document.getElementById( "solutionsEmpty" ).classList.remove( "hidden" );
+    if( solutions_.length === 1 && solutions_[0] === null )
+        return document.getElementById( "solutionsEmpty" ).classList.remove( "hidden" );
 
     const userIds = solutions_.map( ( { executor: { id } } ) => id );
     const executorsRatings = await API.executorRating.getByUserIds( userIds );
@@ -58,19 +57,27 @@ async function chooseSolutionFunc( taskId, solutionId ){
     const result = await API.tasks.setSolution( taskId, solutionId );
 
     if( result === true )
-        window.open( "/" );
+        window.open( "/", "_blank" );
     else
         alert( "Something wrong" );
 }
 
 async function index(){
-    const id = ( new URLSearchParams( window.location.search ) ).get( "id" );
+    const urlSearchParams = new URLSearchParams( window.location.search );
+    const id = urlSearchParams.get( "id" );
+    const error = urlSearchParams.get( "error" );
     solutions_ = await API.solutions.getByTaskId( root, id );
     const currentUser = await API.users.getCurrent();
 
-    if( solutions_ === 403 );
-        // FIXME
-        // document.getElementById( "solutionsUnauthorized" ).classList.remove( "hidden" );
+    if( typeof error === "string" ){
+        if( error === "a_customer" )
+            alert( "Customer doesn't add a solution to self task" );
+        else if( error === "already_chosen" )
+            alert( "Solution for this task already chosen" );
+    }
+
+    if( solutions_ === 403 )
+        document.getElementById( "solutionsUnauthorized" ).classList.remove( "hidden" );
     else{
         const taskCustomerId = parseInt( document.getElementById( "taskCustomerId" ).value );
 

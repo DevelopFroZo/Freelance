@@ -19,22 +19,38 @@
     <div class = "row">
         <h1>Register</h1>
     </div>
-    <form id = "register-form" th:action = "@{/register}" method = "POST">
+    <form id = "register-form" th:action = "@{/register}" th:object = "${user}" method = "POST">
         <div class = "form-group">
             <label for = "name">Name</label>
-            <input id = "name" name = "name" class = "form-control" />
+            <input id = "name" class = "form-control" th:field = "*{name}" />
+            <span th:if = "${#fields.hasErrors( 'name' )}"
+                  th:text = "${#fields.errors( 'name' ).get( 0 )}"
+                  class = "text-danger"
+            ></span>
         </div>
         <div class = "form-group">
             <label for = "description">Description</label>
-            <textarea id = "description" name = "description" class = "form-control"></textarea>
+            <textarea id = "description" class = "form-control" th:field = "*{description}"></textarea>
+            <span th:if = "${#fields.hasErrors( 'description' )}"
+                  th:text = "${#fields.errors( 'description' ).get( 0 )}"
+                  class = "text-danger"
+            ></span>
         </div>
         <div class = "form-group">
             <label for = "login">Login</label>
-            <input id = "login" name = "login" class = "form-control" />
+            <input id = "login" class = "form-control" th:field = "*{login}" />
+            <span th:if = "${#fields.hasErrors( 'login' )}"
+                  th:text = "${#fields.errors( 'login' ).get( 0 )}"
+                  class = "text-danger"
+            ></span>
         </div>
         <div class = "form-group">
             <label for = "password">Password</label>
-            <input type = "password" id = "password" name = "password" class = "form-control" />
+            <input type = "password" id = "password" class = "form-control" th:field = "*{password}" />
+            <span th:if = "${#fields.hasErrors( 'password' )}"
+                  th:text = "${#fields.errors( 'password' ).get( 0 )}"
+                  class = "text-danger"
+            ></span>
         </div>
         <button type = "submit" class = "btn btn-primary">Register</button>
     </form>

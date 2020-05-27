@@ -29,14 +29,12 @@ public class TaskController{
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private SolutionService solutionService;
-
     @RequestMapping( value = "/task" )
     private String task(
             @RequestParam( "id" ) TaskFull taskFull,
             Model model
     ){
+        taskFull.getFull().setSolution( null );
         model.addAttribute( "task", taskFull );
 
         return "tasks/task";
@@ -80,12 +78,8 @@ public class TaskController{
         }
 
         task.setCustomer( customer );
-
-        boolean isSaved = taskService.save( task );
-
-        // FIXME если ошибка, redirect на ошибку
-        if( isSaved )
-            this.userService.decBalance( Long.valueOf( task.getBudget() ), customer.getId() );
+        taskService.save( task );
+        this.userService.decBalance( Long.valueOf( task.getBudget() ), customer.getId() );
 
         return "redirect:/";
     }
@@ -99,15 +93,6 @@ public class TaskController{
             Authentication authentication
     ){
         User current = (User) authentication.getPrincipal();
-
-        System.out.println( task );
-        System.out.println( solution );
-
-        // FIXME redirect to error
-        if( current.getId() != task.getId() );
-
-        // FIXME redirect to error
-        if( task.getSolution() != null );
 
         this.taskService.setSolution( task.getId(), solution );
         this.taskService.close( task.getId() );

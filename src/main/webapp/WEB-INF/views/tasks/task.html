@@ -69,7 +69,9 @@
 
     <p class="text-danger" th:text = "${task.full.budget}">5 000</p>
 
-    <div id = "solutionsCards"></div>
+    <span class = "text-danger hidden" id = "solutionsUnauthorized">Please login to see solutions</span>
+    <span class = "text-danger hidden" id = "solutionsEmpty">No solutions</span>
+    <div id = "solutionsCards" class = "hidden"></div>
 
     <!-- Modal -->
     <div class = "modal fade modal-dialog-centering" id = "modalAnswer" tabindex = "-2" role = "dialog" aria-labelledby = "exampleModalLabel" aria-hidden = "true">

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -26,6 +27,7 @@ public class Solution{
 
     // Описание
     @Column
+    @NotBlank( message = "Must be not empty" )
     private String description;
 
     // Ссылки

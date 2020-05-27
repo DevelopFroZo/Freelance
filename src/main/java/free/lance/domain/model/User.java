@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,18 +36,22 @@ public class User implements UserDetails{
 
     // Имя
     @Column
+    @NotBlank( message = "Must be not empty" )
     private String name;
 
     // О себе
     @Column
+    @NotBlank( message = "Must be not empty" )
     private String description;
 
     // Логин
     @Column( unique = true )
+    @NotBlank( message = "Must be not empty" )
     private String login;
 
     // Пароль
     @Column
+    @NotBlank( message = "Must be not empty" )
     private String password;
 
     // Баланс

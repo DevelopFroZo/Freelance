@@ -15,9 +15,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @Controller
 public class RootController{
@@ -53,26 +56,36 @@ public class RootController{
     }
 
     @RequestMapping( value = "/register", method = RequestMethod.GET )
-    public String registerGet(){
+    public String registerGet( Model model ){
+        model.addAttribute( new User() );
+
         return "register";
     }
 
     @RequestMapping( value = "/register", method = RequestMethod.POST )
-    public String register( @ModelAttribute User user ){
+    public String register(
+            @Valid @ModelAttribute User user,
+            BindingResult errors,
+            Model model
+    ){
+        if( errors.hasErrors() )
+            return "register";
+
         boolean isSaved = this.userService.save( user );
 
-        if( isSaved ){
-            Authentication auth = new UsernamePasswordAuthenticationToken(
-                    user,
-                    user.getPassword(),
-                    user.getAuthorities()
-            );
-            SecurityContextHolder.getContext().setAuthentication( auth );
+        if( !isSaved ){
+            errors.rejectValue( "login", "error.user", "Login already picked!" );
 
-            return "redirect:/";
-        } else {
-            // FIXME send an error
             return "register";
         }
+
+        Authentication auth = new UsernamePasswordAuthenticationToken(
+                user,
+                user.getPassword(),
+                user.getAuthorities()
+        );
+        SecurityContextHolder.getContext().setAuthentication( auth );
+
+        return "redirect:/";
     }
 }

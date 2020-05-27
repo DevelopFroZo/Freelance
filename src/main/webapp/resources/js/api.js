@@ -44,6 +44,7 @@ async function executorRatingGetByUserIds( userIds ){
 }
 
 async function usersGetCurrent(){
+    let result;
     const response = await fetch( `${root}users/current` );
 
     if( response.status === 403 || response.redirected )
@@ -51,7 +52,13 @@ async function usersGetCurrent(){
     else if( !response.ok )
         throw response;
 
-    return await response.json();
+    try{
+        result = await response.json();
+    } catch( e ){
+        result = null;
+    }
+
+    return result;
 }
 
 async function tasksSetSolution( taskId, solutionId ){

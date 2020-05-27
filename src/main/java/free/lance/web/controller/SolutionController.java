@@ -39,13 +39,13 @@ public class SolutionController{
     ){
         User executor = (User) authentication.getPrincipal();
 
-        // FIXME change to error
-        if( task.getCustomer().getId() == executor.getId() );
+        if( task.getCustomer().getId().equals( executor.getId() ) )
+            return "redirect:/tasks/task?id=" + task.getId() + "&error=a_customer";
 
         Solution solution = this.solutionService.findOneByTaskIdAndUserId( task.getId(), executor.getId() );
 
-        // FIXME change to error
-        if( solution != null );
+        if( solution != null )
+            return "redirect:/tasks/task?id=" + task.getId() + "&error=already_choosen";
 
         model.addAttribute( "solution", new Solution() );
 
@@ -62,20 +62,17 @@ public class SolutionController{
     ){
         User executor = (User) authentication.getPrincipal();
 
-        // FIXME change to error
-        if( task.getCustomer().getId() == executor.getId() );
+        if( task.getCustomer().getId().equals( executor.getId() ) )
+            return "redirect:/tasks/task?id=" + task.getId() + "&error=a_customer";
 
         Solution solution_ = this.solutionService.findOneByTaskIdAndUserId( task.getId(), executor.getId() );
 
-        // FIXME change to error
-        if( solution_ != null );
+        if( solution != null )
+            return "redirect:/tasks/task?id=" + task.getId() + "&error=already_choosen";
 
         solution.setTask( task );
         solution.setExecutor( executor );
-        System.out.println( solution );
-        boolean isSaved = this.solutionService.save( solution );
-
-        // FIXME if error send to error page
+        this.solutionService.save( solution );
 
         return "redirect:/tasks/task?id=" + task.getId();
     }

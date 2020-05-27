@@ -1,5 +1,6 @@
 package free.lance.web.controller;
 
+import free.lance.domain.model.ExecutorRating;
 import free.lance.domain.response.ExecutorRatingExtended;
 import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -113,5 +115,16 @@ public class RootController{
         model.addAttribute( "executorRating", executorsRatingsExtended );
 
         return "personalAccount";
+    }
+
+    @RequestMapping( value = "rating_executors" )
+    public String ratingExecutors(
+            Model model
+    ){
+        List<ExecutorRating> executorsRatings = this.executorRatingService.findAll();
+
+        model.addAttribute( "executorsRating", executorsRatings );
+
+        return "ratingExecutors";
     }
 }

@@ -38,6 +38,7 @@ public class UserController{
         User current = (User) authentication.getPrincipal();
 
         this.userService.incBalance( current.getId(), value );
+        current.setBalance( current.getBalance() + value );
 
         return "{ \"ok\": true }";
     }

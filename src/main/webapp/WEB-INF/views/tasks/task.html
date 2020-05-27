@@ -40,7 +40,18 @@
     <div class = "row hidden" id = "addSolution">
         <a class = "btn btn-primary" style = "color: white" th:href = "@{/solutions/add( task_id = ${task.full.id} )}">Add answer</a>
     </div>
+
     <p th:text = "${task.full.description}">Description.</p>
+    
+    <h3>Links</h3>
+    <ul>
+        <li>
+            <a href = "#" style="text-overflow: ellipsis">Link 1</a>
+        </li>
+        <li>
+            <a href = "#" style="text-overflow: ellipsis">Link 2</a>
+        </li>
+    </ul>
 
     <div class="row">
         <h5 class="col-2">Customer</h5>

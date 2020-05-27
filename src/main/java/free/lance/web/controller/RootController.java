@@ -1,5 +1,6 @@
 package free.lance.web.controller;
 
+import free.lance.domain.model.Solution;
 import free.lance.domain.model.Task;
 import free.lance.domain.response.ExecutorRatingExtended;
 import free.lance.domain.response.ExecutorRatingExtended2;
@@ -7,6 +8,7 @@ import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;
 import free.lance.domain.response.UserExtended;
 import free.lance.domain.service.ExecutorRatingService;
+import free.lance.domain.service.SolutionService;
 import free.lance.domain.service.TaskService;
 import free.lance.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,9 @@ public class RootController{
 
     @Autowired
     private ExecutorRatingService executorRatingService;
+
+    @Autowired
+    private SolutionService solutionService;
 
     @RequestMapping( value = "/" )
     public String index(
@@ -110,6 +115,7 @@ public class RootController{
         Set<Long> userIds = new HashSet<>();
         User current = (User) authentication.getPrincipal();
         List<Task> userTasks = this.taskService.findAllByUserId( current.getId() );
+        List<Solution> solutions = this.solutionService.findAllByUserId( current.getId() );
 
         userIds.add( current.getId() );
         Set<ExecutorRatingExtended> executorsRatingsExtended = this.executorRatingService.findAllByUserIds( userIds );
@@ -117,6 +123,7 @@ public class RootController{
         model.addAttribute( "user", current );
         model.addAttribute( "executorRating", executorsRatingsExtended );
         model.addAttribute( "tasks", userTasks );
+        model.addAttribute( "solutions", solutions );
 
         return "personalAccount";
     }

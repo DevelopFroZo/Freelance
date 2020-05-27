@@ -32,4 +32,8 @@ public class SolutionService{
             return false;
         }
     }
+
+    public List<Solution> findAllByUserId( Long userId ){
+        return this.solutionRepository.findAllByUserId( userId );
+    }
 }

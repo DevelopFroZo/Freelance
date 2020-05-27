@@ -31,7 +31,7 @@ function fillModal( index ){
 
     for( let link of solution.links )
         solutionLinksList.innerHTML +=
-            `<a href = "${link}">${link}</a>`;
+            `<a href = "${link}">${link}</a> <br>`;
 
     const chooseSolution = document.getElementById( "chooseSolution" );
     const taskId = document.getElementById( "taskId" ).value;

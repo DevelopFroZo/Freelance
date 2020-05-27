@@ -13,4 +13,7 @@ public interface SolutionRepository extends JpaRepository<Solution, Long>{
 
     @Query( "select s from Solution as s where s.task.id = :taskId and s.executor.id = :userId" )
     Solution findOneByTaskIdAndUserId( @Param( "taskId" ) Long taskId, @Param( "userId" ) Long userId );
+
+    @Query( "select s from Solution as s where s.executor.id = :userId" )
+    List<Solution> findAllByUserId( @Param( "userId" ) Long userId );
 }

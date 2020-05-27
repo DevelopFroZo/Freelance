@@ -7,7 +7,8 @@ const executorRating = {
 };
 
 const users = {
-    getCurrent: usersGetCurrent
+    getCurrent: usersGetCurrent,
+    incBalance: usersIncBalance
 };
 
 const tasks = {
@@ -59,6 +60,17 @@ async function usersGetCurrent(){
     }
 
     return result;
+}
+
+async function usersIncBalance( value ){
+    const response = await fetch( `${root}users/inc_balance?value=${value}` );
+
+    if( response.status === 403 || response.redirected )
+        return 403;
+    else if( !response.ok )
+        throw response;
+
+    return await response.json();
 }
 
 async function tasksSetSolution( taskId, solutionId ){

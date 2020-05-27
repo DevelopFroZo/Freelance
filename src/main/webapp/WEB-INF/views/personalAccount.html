@@ -11,6 +11,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script th:src = "@{/resources/js/logout.js}"></script>
     <script th:src = "@{/resources/js/personalAccount.js}"></script>
+    <script th:src = "@{/resources/js/api.js}"></script>
+
+    <script th:inline = "javascript">
+        /<![CDATA[/
+        const root = /[[@{/}]]/ "default";
+        /]]>/
+    </script>
+
 </head>
 <body>
 

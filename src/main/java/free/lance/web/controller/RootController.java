@@ -1,6 +1,5 @@
 package free.lance.web.controller;
 
-import free.lance.domain.model.ExecutorRating;
 import free.lance.domain.response.ExecutorRatingExtended;
 import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;

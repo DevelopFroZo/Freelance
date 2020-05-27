@@ -3,7 +3,7 @@ async function incBalance(){
     const result = await API.users.incBalance( value );
 
     if( !result.ok )
-        alert( result.message );
+        return alert( result.message );
 
     const oldBalanceInput = document.getElementById( "valueBalance" );
     const oldBalance = parseInt( oldBalanceInput.innerHTML );

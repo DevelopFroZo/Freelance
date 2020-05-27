@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TaskService{
@@ -40,5 +41,9 @@ public class TaskService{
 
     public void close( Long id ){
         this.taskRepository.close( id );
+    }
+
+    public List<Task> findAllByUserId( Long userId ){
+        return this.taskRepository.findAllByUserId( userId );
     }
 }

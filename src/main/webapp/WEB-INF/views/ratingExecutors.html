@@ -16,34 +16,56 @@
 <div th:replace="../views/header :: header"></div>
 
 <div class = "container">
-
-<h2 class="text-danger">Rating Executors</h2>
-    
+    <h2 class="text-danger">Rating Executors</h2>
     <table class="table table-hover">
-  <thead>
-    <tr class="thead-dark">
-      <th scope="1">#</th>
-      <th scope="1">
-          <a href="#">Name</a>
-      </th>
-      <th scope="1">
-          <a href="#">Category</a>
-      </th>
-      <th scope="1">
-          <a href="#">Rate</a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each = "rating, iter:${executorsRating}">
-        <td th:text = "${iter.index + 1}"></td>
-        <td th:text = "${rating.user.name}"></td>
-        <td th:text = "${rating.category.name}"></td>
-        <td th:text = "${rating.rating}"></td>
-    </tr>
-  </tbody>
-</table>
-    
+        <thead>
+        <tr class="thead-dark">
+            <th scope="1">#</th>
+            <th scope="1">
+                <a th:href = "@{/rating_executors( sort = 'user.name' )}">Name</a>
+            </th>
+            <th scope="1">
+                <a th:href = "@{/rating_executors( sort = 'category' )}">Category</a>
+            </th>
+            <th scope="1">
+                <a th:href = "@{/rating_executors( sort = 'rating' )}">Rate</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "rating, iter:${executorsRating}">
+            <td th:text = "${iter.index + 1}"></td>
+            <td th:text = "${rating.user.name}"></td>
+            <td th:text = "${rating.category.name}"></td>
+            <td th:text = "${rating.rating}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label = "Page navigation example" th:if = "${executorsRating.totalPages > 1}">
+        <span>Page</span>
+        <span th:text = "${executorsRating.number + 1}"></span>
+        <span>of</span>
+        <span th:text = "${executorsRating.totalPages}"></span>
+        <ul class = "pagination">
+            <li class = "page-item disabled" th:if = "${executorsRating.number == 0}">
+                <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
+            </li>
+            <li class = "page-item" th:if = "${executorsRating.number > 0}">
+                <a class = "page-link" th:href = "@{/rating_executors(
+                sort = ${param.get( 'sort' )},
+                page = ${executorsRating.number - 1})}">Previous</a>
+            </li>
+            <li class = "page-item disabled" th:if = "${executorsRating.number == executorsRating.totalPages - 1}">
+                <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
+            </li>
+            <li class = "page-item" th:if = "${executorsRating.number < executorsRating.totalPages - 1}">
+                <a class = "page-link" th:href = "@{/rating_executors(
+                sort = ${param.get( 'sort' )},
+                page = ${executorsRating.number + 1}
+                )}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 </body>

@@ -1,6 +1,9 @@
 package free.lance.domain.repository;
 
 import free.lance.domain.model.User;
+import free.lance.domain.response.UserExtended;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +30,13 @@ public interface UserRepository extends JpaRepository<User, Long>{
             @Param( "id" ) Long id,
             @Param( "value" ) Long value
     );
+
+    @Query(
+            "select new free.lance.domain.response.UserExtended( u, avg( ucr ) ) " +
+            "from" +
+            "   User as u" +
+            "   inner join u.customerRating as ucr " +
+            "group by u"
+    )
+    Page<UserExtended> findAllExtended( Pageable page );
 }

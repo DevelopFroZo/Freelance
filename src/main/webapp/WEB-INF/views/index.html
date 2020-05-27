@@ -52,9 +52,6 @@
             <li class = "page-item" th:if = "${tasks.number > 0}">
                 <a class = "page-link" th:href = "@{/( page = ${tasks.number - 1} )}">Previous</a>
             </li>
-            <!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-            <!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-            <!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
             <li class = "page-item disabled" th:if = "${tasks.number == tasks.totalPages - 1}">
                 <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
             </li>

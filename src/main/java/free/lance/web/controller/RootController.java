@@ -1,9 +1,11 @@
 package free.lance.web.controller;
 
+import free.lance.domain.model.Task;
 import free.lance.domain.response.ExecutorRatingExtended;
 import free.lance.domain.response.ExecutorRatingExtended2;
 import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;
+import free.lance.domain.response.UserExtended;
 import free.lance.domain.service.ExecutorRatingService;
 import free.lance.domain.service.TaskService;
 import free.lance.domain.service.UserService;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -106,12 +109,14 @@ public class RootController{
     ){
         Set<Long> userIds = new HashSet<>();
         User current = (User) authentication.getPrincipal();
+        List<Task> userTasks = this.taskService.findAllByUserId( current.getId() );
 
         userIds.add( current.getId() );
         Set<ExecutorRatingExtended> executorsRatingsExtended = this.executorRatingService.findAllByUserIds( userIds );
 
         model.addAttribute( "user", current );
         model.addAttribute( "executorRating", executorsRatingsExtended );
+        model.addAttribute( "tasks", userTasks );
 
         return "personalAccount";
     }
@@ -121,10 +126,56 @@ public class RootController{
             Model model,
             Pageable page
     ){
-        Page<ExecutorRatingExtended2> executorsRatings = this.executorRatingService.findAll( page );
+        Sort sort = page.getSort();
+        PageRequest pageRequest;
+
+        if( sort == null ) pageRequest = new PageRequest( page.getPageNumber(), page.getPageSize() );
+        else{
+            String prop = sort.iterator().next().getProperty();
+
+            if( !prop.equals( "rating" ) )
+                pageRequest = new PageRequest( page.getPageNumber(), page.getPageSize(), sort );
+            else
+                pageRequest = new PageRequest(
+                        page.getPageNumber(),
+                        page.getPageSize(),
+                        JpaSort.unsafe( Sort.Direction.DESC, "avg( erv )" )
+                );
+        }
+
+        Page<ExecutorRatingExtended2> executorsRatings = this.executorRatingService.findAll( pageRequest );
 
         model.addAttribute( "executorsRating", executorsRatings );
 
         return "ratingExecutors";
+    }
+
+    @RequestMapping( value = "rating_customers" )
+    public String ratingCustomers(
+            Model model,
+            Pageable page
+    ){
+        Sort sort = page.getSort();
+        PageRequest pageRequest;
+
+        if( sort == null ) pageRequest = new PageRequest( page.getPageNumber(), page.getPageSize() );
+        else{
+            String prop = sort.iterator().next().getProperty();
+
+            if( !prop.equals( "rating" ) )
+                pageRequest = new PageRequest( page.getPageNumber(), page.getPageSize(), sort );
+            else
+                pageRequest = new PageRequest(
+                        page.getPageNumber(),
+                        page.getPageSize(),
+                        JpaSort.unsafe( Sort.Direction.DESC, "avg( ucr )" )
+                );
+        }
+
+        Page<UserExtended> users = this.userService.findAllExtended( pageRequest );
+
+        model.addAttribute( "users", users );
+
+        return "ratingCustomers";
     }
 }

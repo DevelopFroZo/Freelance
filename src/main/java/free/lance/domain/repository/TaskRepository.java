@@ -13,6 +13,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long>{
     @Query(
@@ -44,4 +46,7 @@ public interface TaskRepository extends JpaRepository<Task, Long>{
     @Transactional
     @Query( "update Task as t set t.status = free.lance.domain.model.Status.CLOSED where t.id = :id" )
     void close( @Param( "id" ) Long id );
+
+    @Query( "select t from Task as t where t.customer.id = :userId" )
+    List<Task> findAllByUserId( @Param( "userId" ) Long userId );
 }

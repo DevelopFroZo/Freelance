@@ -16,54 +16,52 @@
 <div th:replace="../views/header :: header"></div>
 
 <div class = "container">
-
-<h2 class="text-danger">Rating Executors</h2>
-    
+    <h2 class="text-danger">Rating Executors</h2>
     <table class="table table-hover">
-  <thead>
-    <tr class="thead-dark">
-      <th scope="1">#</th>
-      <th scope="1">
-          <a href="#">Name</a>
-      </th>
-      <th scope="1" th:href="#">
-          <a href="#">Rate</a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each = "rating, iter:${customersRating}">
-        <td th:text = "${iter.index + 1}"></td>
-        <td th:text = "${rating.user.name}"></td>
-        <td th:text = "${rating.rating}"></td>
-    </tr>
-  </tbody>
-</table>
-    
-    <nav aria-label = "Page navigation example" th:if = "${tasks.totalPages > 1}">
+        <thead>
+        <tr class="thead-dark">
+            <th scope="1">#</th>
+            <th scope="1">
+                <a th:href = "@{/rating_customers( sort = 'name' )}">Name</a>
+            </th>
+            <th scope="1" href="#">
+                <a th:href = "@{/rating_customers( sort = 'rating' )}">Rate</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "user, iter:${users}">
+            <td th:text = "${iter.index + 1}"></td>
+            <td th:text = "${user.full.name}"></td>
+            <td th:text = "${user.rating}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label = "Page navigation example" th:if = "${users.totalPages > 1}">
         <span>Page</span>
-        <span th:text = "${tasks.number + 1}"></span>
+        <span th:text = "${users.number + 1}"></span>
         <span>of</span>
-        <span th:text = "${tasks.totalPages}"></span>
+        <span th:text = "${users.totalPages}"></span>
         <ul class = "pagination">
-            <li class = "page-item disabled" th:if = "${tasks.number == 0}">
+            <li class = "page-item disabled" th:if = "${users.number == 0}">
                 <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
             </li>
-            <li class = "page-item" th:if = "${tasks.number > 0}">
-                <a class = "page-link" th:href = "@{/( page = ${tasks.number - 1} )}">Previous</a>
+            <li class = "page-item" th:if = "${users.number > 0}">
+                <a class = "page-link" th:href = "@{/rating_customers(
+                sort = ${param.get( 'sort' )},
+                page = ${users.number - 1})}">Previous</a>
             </li>
-            <!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-            <!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-            <!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-            <li class = "page-item disabled" th:if = "${tasks.number == tasks.totalPages - 1}">
+            <li class = "page-item disabled" th:if = "${users.number == users.totalPages - 1}">
                 <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
             </li>
-            <li class = "page-item" th:if = "${tasks.number < tasks.totalPages - 1}">
-                <a class = "page-link" th:href = "@{/( page = ${tasks.number + 1} )}">Next</a>
+            <li class = "page-item" th:if = "${users.number < users.totalPages - 1}">
+                <a class = "page-link" th:href = "@{/rating_customers(
+                sort = ${param.get( 'sort' )},
+                page = ${users.number + 1}
+                )}">Next</a>
             </li>
         </ul>
     </nav>
 </div>
-
 </body>
 </html>

@@ -47,6 +47,9 @@
         <h2 class="col-8">Task name</h2>
     </div>
 
+    <div class = "row">
+        <button class = "btn btn-primary" th:action = "@{/addAnswer}" >Add answer</button>
+    </div>
     <p>Description.</p>
 
     <div class="row">
@@ -77,8 +80,6 @@
             </button>
         </div>
     </div>
-
-
 
 
     <!-- Modal -->
@@ -122,6 +123,18 @@
                                 <p class="col-6">4,8</p>
                             </div>
                         </div>
+                        <p>Put a rating for the work done by category.</p>-->
+                        <div class = "input-group">
+                            <div class = "row">
+                                <h5 class = "col-6">Category</h5>
+                                <h5 class = "col-6">Rate</h5>
+                            </div>
+
+                            <div class = "row">
+                                <p class = "col-6" id = "inputRateByCategory">Category name</p>
+                                <input type = "text" class = "col-6" id = "inputRate" placeholder = "5">
+                            </div>
+                        </div>
                     </div>
 
 
@@ -133,39 +146,6 @@
             </div>
         </div>
     </div>
-
-<!--    &lt;!&ndash; Modal &ndash;&gt;-->
-<!--    <div class="modal fade .modal-sm" id="modalRate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                        <h5 class="modal-title" id="modalRating">Executor rating</h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                        <span aria-hidden="true">&times;</span>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class = "modal-body">-->
-<!--                    <p>Put a rating for the work done by category.</p>-->
-<!--                    <div class = "input-group">-->
-<!--                        <div class = "row">-->
-<!--                            <h5 class = "col-6">Category</h5>-->
-<!--                            <h5 class = "col-6">Rate</h5>-->
-<!--                        </div>-->
-
-<!--                        <div class = "row">-->
-<!--                            <p class = "col-6" id = "inputRateByCategory">Category name</p>-->
-<!--                            <input type = "text" class = "col-6" id = "inputRate" placeholder = "5">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
 </body>
 </html>

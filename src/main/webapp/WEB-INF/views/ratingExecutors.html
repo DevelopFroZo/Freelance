@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Freelance | Rating executors</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:src = "@{/resources/js/logout.js}"></script>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class = "container">
+
+<h2 class="text-danger">Rating Executors</h2>
+    
+    <table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Disign</td>
+      <td>4,5</td>
+    </tr>
+  </tbody>
+</table>
+    
+</div>
+
+</body>
+</html>

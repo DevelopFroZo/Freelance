@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=cp1251" />
+    <title>Freelance | Personal Account</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:src = "@{/resources/js/logout.js}"></script>
+</head>
+<body>
+
+<div th:replace = "../views/header :: header"></div>
+
+<div class = "container">
+
+    <h2 class = "text-danger">User name</h2>
+    <p>Description</p>
+    
+
+    <div id = "rateUser">
+        <h4>Rating by category</h4>
+        <div class = "row">
+            <p class = "col-6">Category name</p>
+            <p class = "col-6">4,8</p>
+        </div>
+    </div>
+    
+    <div>
+        <h5>Login</h5>
+        <p>login</p>
+        <h5>Password</h5>
+        <p>password</p>
+        <button class="btn btn-light">
+            Change login or pass
+        </button>
+    </div>
+    
+    <div class = "row justify-content-end">
+        <h5 class="col-2">Balance </h5>
+        <h4 class = "col-2 text-danger">5000</h4>
+    </div>
+        
+    <div class = "row justify-content-end" >
+        <button class = "col-4 btn btn-primary">
+            Replenish balance
+        </button>
+    </div>
+
+</div>
+</body>
+</html>

@@ -32,13 +32,13 @@ public class UserController{
             @RequestParam( "value" ) Long value,
             Authentication authentication
     ){
-        if( value < 1 )
-            return "{ ok: false, message: 'Invalid balance' }";
+        if( value == null || value < 1 )
+            return "{ \"ok\": false, \"message\": \"Invalid balance\" }";
 
         User current = (User) authentication.getPrincipal();
 
         this.userService.incBalance( current.getId(), value );
 
-        return "{ ok: true }";
+        return "{ \"ok\": true }";
     }
 }

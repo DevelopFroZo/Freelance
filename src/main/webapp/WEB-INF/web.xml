@@ -59,8 +59,8 @@
         </session-timeout>
     </session-config>
 
-<!--    <error-page>-->
-<!--        <exception-type>free.lance.domain</exception-type>-->
-<!--        <location>/404</location>-->
-<!--    </error-page>-->
+    <error-page>
+        <exception-type>free.lance.domain.exception.ResourceNotFoundException</exception-type>
+        <location>/404</location>
+    </error-page>
 </web-app>

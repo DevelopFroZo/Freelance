@@ -1,5 +1,6 @@
 package free.lance.web.controller;
 
+import free.lance.domain.exception.ResourceNotFoundException;
 import free.lance.domain.model.*;
 import free.lance.domain.response.TaskFull;
 import free.lance.domain.service.*;
@@ -33,7 +34,10 @@ public class TaskController{
     private String task(
             @RequestParam( "id" ) TaskFull taskFull,
             Model model
-    ){
+    ) throws ResourceNotFoundException{
+        if( taskFull == null )
+            throw new ResourceNotFoundException();
+
         taskFull.getFull().setSolution( null );
         model.addAttribute( "task", taskFull );
 

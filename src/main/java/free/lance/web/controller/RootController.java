@@ -47,6 +47,11 @@ public class RootController{
     @Autowired
     private SolutionService solutionService;
 
+    @RequestMapping( value = "/404" )
+    public String _404(){
+        return "404";
+    }
+
     @RequestMapping( value = "/" )
     public String index(
             Model model,

@@ -1,5 +1,6 @@
 package free.lance.web.controller;
 
+import free.lance.domain.exception.ResourceNotFoundException;
 import free.lance.domain.model.Solution;
 import free.lance.domain.model.Task;
 import free.lance.domain.model.User;
@@ -36,7 +37,10 @@ public class SolutionController{
             @RequestParam( "task_id" ) Task task,
             Model model,
             Authentication authentication
-    ){
+    ) throws ResourceNotFoundException{
+        if( task == null )
+            throw new ResourceNotFoundException();
+
         User executor = (User) authentication.getPrincipal();
 
         if( task.getCustomer().getId().equals( executor.getId() ) )

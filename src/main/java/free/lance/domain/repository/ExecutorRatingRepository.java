@@ -25,7 +25,7 @@ public interface ExecutorRatingRepository extends JpaRepository<ExecutorRating, 
     Set<ExecutorRatingExtended> findAllByUserIn( @Param( "userIds" ) Set<Long> userIds );
 
     @Query(
-            "select new free.lance.domain.response.ExecutorRatingExtended2( er.user, er.category, avg( erv ) )" +
+            "select new free.lance.domain.response.ExecutorRatingExtended2( er.user, er.category, avg( erv ) ) " +
             "from" +
             "   ExecutorRating as er" +
             "   inner join er.rating as erv " +

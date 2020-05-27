@@ -89,7 +89,24 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div th:each = "answer:${answers}">
+                <div class = "card">
+                    <div class = "card-body">
+                        <h5 class = "card-title" th:text = "${task.name}">Task name</h5>
+                        <div class="row">
+                            <h6>Status</h6>
+                            <p>status</p>
+                        </div>
+                        <p class = "card-subtitle mb-2 text-muted"></p>
+                        <h5>Solution</h5>
+                        <p class="card-text" th:text = "${answer.description}">Description.</p>
+                        <a href="#" class="btn btn-primary">See more</a>
+                        <a class = "hidden cardLink" th:href = "@{/tasks/task( id = ${task.id} )}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

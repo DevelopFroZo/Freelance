@@ -40,7 +40,6 @@ public class TaskController{
         return "tasks/task";
     }
 
-    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
     @RequestMapping( value = "/add" )
     public String addGet( Model model ){
         Task task = new Task();

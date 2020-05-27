@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping( value = "/solutions" )
@@ -23,7 +22,6 @@ public class SolutionController{
     private SolutionService solutionService;
 
     @RequestMapping( value = "get_by_task_id" )
-    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
     @ResponseBody
     public List<Solution> getByTask(
             @RequestParam( "task_id" ) Long taskId
@@ -34,7 +32,6 @@ public class SolutionController{
     }
 
     @RequestMapping( value = "add" )
-    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
     public String addGet(
             @RequestParam( "task_id" ) Task task,
             Model model,

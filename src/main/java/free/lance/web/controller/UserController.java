@@ -26,7 +26,6 @@ public class UserController{
     }
 
     @RequestMapping( value = "inc_balance" )
-    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
     @ResponseBody
     public String incBalance(
             @RequestParam( "value" ) Long value,

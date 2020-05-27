@@ -107,7 +107,6 @@ public class RootController{
     }
 
     @RequestMapping( value = "personal_account" )
-    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
     public String personalAccount(
             Model model,
             Authentication authentication

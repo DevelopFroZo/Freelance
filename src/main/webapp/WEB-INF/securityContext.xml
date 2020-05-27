@@ -22,7 +22,22 @@
 
                     <security:logout logout-url = "/logout" logout-success-url = "/login?logout=true" />
 
+<!--            USER-->
+<!--            <security:intercept-url pattern = "" access = "ROLE_" />-->
+            <security:intercept-url pattern = "/executor_rating/get_by_user_ids" access = "ROLE_USER" />
+
+            <security:intercept-url pattern = "/personal_account" access = "ROLE_USER" />
+            <security:intercept-url pattern = "/rating_executors" access = "ROLE_USER" />
+            <security:intercept-url pattern = "/rating_customers" access = "ROLE_USER" />
+
+            <security:intercept-url pattern = "/solutions/get_by_task_id" access = "ROLE_USER" />
+            <security:intercept-url pattern = "/solutions/add" access = "ROLE_USER" />
+
             <security:intercept-url pattern = "/tasks/add" access = "ROLE_USER" />
+            <security:intercept-url pattern = "/tasks/set_solution" access = "ROLE_USER" />
+
+            <security:intercept-url pattern = "/users/inc_balance" access = "ROLE_USER" />
+
             <security:intercept-url pattern = "/**" access = "ROLE_ANONYMOUS, ROLE_USER" />
         </security:http>
     <security:authentication-manager>

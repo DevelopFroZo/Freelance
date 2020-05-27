@@ -61,7 +61,7 @@ public class User implements UserDetails{
     // Рейтинг пользователя, как заказчика
     // Хранится массивом чисел от 1 до 5
     // Считается следующиим образом:
-    // Суммируются все числа и делятся на длину массива
+    // Суммируются все числа и делятся на длину массиваs
     @ElementCollection( fetch = FetchType.EAGER )
     @JoinTable( name = "user_customer_rating_values" )
     private List<Integer> customerRating;

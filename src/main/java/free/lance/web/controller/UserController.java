@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,13 +32,13 @@ public class UserController{
             @RequestParam( "value" ) Long value,
             Authentication authentication
     ){
-        if( value < 1 )
-            return "{ ok: false, message: 'Invalid balance' }";
+        if( value == null || value < 1 )
+            return "{ \"ok\": false, \"message\": \"Invalid balance\" }";
 
         User current = (User) authentication.getPrincipal();
 
         this.userService.incBalance( current.getId(), value );
 
-        return "{ ok: true }";
+        return "{ \"ok\": true }";
     }
 }

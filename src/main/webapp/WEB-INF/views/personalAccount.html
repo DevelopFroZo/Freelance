@@ -14,9 +14,9 @@
     <script th:src = "@{/resources/js/api.js}"></script>
 
     <script th:inline = "javascript">
-        /<![CDATA[/
-        const root = /[[@{/}]]/ "default";
-        /]]>/
+        /*<![CDATA[*/
+        const root = /*[[@{/}]]*/ "default";
+        /*]]>*/
     </script>
 
 </head>
@@ -26,28 +26,26 @@
 
 <div class = "container">
 
-    <h2 class = "text-danger">User name</h2>
-    <p>Description</p>
+    <h2 class = "text-danger" th:text = "${user.name}">User name</h2>
+    <p th:text = "${user.description}">Description</p>
 
 
-    <div id = "rateUser">
+    <div id = "rateUser" th:if = "${executorRating.size() > 0}">
         <h4>Rating by category</h4>
-        <div class = "row">
-            <p class = "col-6">Category name</p>
-            <p class = "col-6">4,8</p>
+        <div class = "row" th:each="rating:${executorRating}">
+            <p class = "col-6" th:text = "${rating.category}">Category name</p>
+            <p class = "col-6" th:text = "${rating.rating}">4,8</p>
         </div>
     </div>
     
     <div>
         <h5>Login</h5>
-        <p>login</p>
-        <h5>Password</h5>
-        <p>password</p>
+        <p th:text = "${user.name}">login</p>
     </div>
     
     <div class = "row justify-content-end">
         <h5 class="col-2">Balance </h5>
-        <h4 class = "col-2 text-danger">5000</h4>
+        <h4 class = "col-2 text-danger" id = "valueBalance" th:text = "${user.balance}">5000</h4>
     </div>
         
     <div class= "row justify-content-end">

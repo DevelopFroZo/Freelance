@@ -6,9 +6,9 @@ async function incBalance(){
         alert( result.message );
 
     const oldBalanceInput = document.getElementById( "valueBalance" );
-    const oldBalance = parseInt( oldBalanceInput.value );
+    const oldBalance = parseInt( oldBalanceInput.innerHTML );
 
-    oldBalanceInput.value = oldBalance + value;
+    oldBalanceInput.innerHTML = oldBalance + value;
 }
 
 function index(){

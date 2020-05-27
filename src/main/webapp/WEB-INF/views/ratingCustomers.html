@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Freelance | Rating employers</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel = "stylesheet" th:href = "@{/resources/css/global.css}">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script th:src = "@{/resources/js/logout.js}"></script>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class = "container">
+
+<h2 class="text-danger">Rating Executors</h2>
+    
+    <table class="table table-hover">
+  <thead>
+    <tr class="thead-dark">
+      <th scope="1">#</th>
+      <th scope="1">Name</th>
+      <th scope="1">Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each = "rating, iter:${customersRating}">
+        <td th:text = "${iter.index + 1}"></td>
+        <td th:text = "${rating.user.name}"></td>
+        <td th:text = "${rating.rating}"></td>
+    </tr>
+  </tbody>
+</table>
+    
+    <nav aria-label = "Page navigation example" th:if = "${tasks.totalPages > 1}">
+        <span>Page</span>
+        <span th:text = "${tasks.number + 1}"></span>
+        <span>of</span>
+        <span th:text = "${tasks.totalPages}"></span>
+        <ul class = "pagination">
+            <li class = "page-item disabled" th:if = "${tasks.number == 0}">
+                <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
+            </li>
+            <li class = "page-item" th:if = "${tasks.number > 0}">
+                <a class = "page-link" th:href = "@{/( page = ${tasks.number - 1} )}">Previous</a>
+            </li>
+            <!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+            <!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+            <!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+            <li class = "page-item disabled" th:if = "${tasks.number == tasks.totalPages - 1}">
+                <a class = "page-link" href = "#" aria-disabled = "true">Previous</a>
+            </li>
+            <li class = "page-item" th:if = "${tasks.number < tasks.totalPages - 1}">
+                <a class = "page-link" th:href = "@{/( page = ${tasks.number + 1} )}">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+</body>
+</html>

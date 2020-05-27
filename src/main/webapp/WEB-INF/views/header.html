@@ -29,6 +29,9 @@
                     <a class="nav-link" th:href="@{/rating_executors}">Rating executor</a>
             </li>
             <li sec:authorize = "isAuthenticated()">
+                <a class="nav-link" th:href="@{/rating_customers}">Rating customers</a>
+            </li>
+            <li sec:authorize = "isAuthenticated()">
                 <p class="navbar-text">
                     Welcome
                     <span sec:authentication = "name"></span>

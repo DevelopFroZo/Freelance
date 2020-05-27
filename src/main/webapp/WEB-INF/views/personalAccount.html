@@ -40,7 +40,7 @@
     
     <div>
         <h5>Login</h5>
-        <p th:text = "${user.name}">login</p>
+        <p th:text = "${user.login}">login</p>
     </div>
     
     <div class = "row justify-content-end">
@@ -57,7 +57,55 @@
             Replenish balance
         </button>
     </div>
-
+    
+<!--    <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--        <li class="nav-item" role="presentation">-->
+<!--            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tasks</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item" role="presentation">-->
+<!--            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Answers</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--    <div class="tab-content" id="myTabContent">-->
+<!--        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" th:each = "task:${tasks}">-->
+<!--            <div class = "card">-->
+<!--                <div class = "card-body">-->
+<!--                    <h5 class = "card-title" th:text = "${task.name}">Task name</h5>-->
+<!--                    <h6 class = "card-subtitle mb-2 text-muted">-->
+<!--                        <span th:each = "category:${task.categories}"-->
+<!--                              th:text = "${category.name} + ' '"-->
+<!--                        ></span>-->
+<!--                    </h6>-->
+<!--                    <p class="card-text" th:text = "${task.description}">Description.</p>-->
+<!--                    <p class="card-text" th:text = "${task.customer.name} + ', ' + ${task.rating}"> Customer </p>-->
+<!--                    <h5 class="card-text" th:text = "${task.budget} + ' rub'"> 5 000</h5>-->
+<!--&lt;!&ndash;                    <h5 class="card-text" th:text = "${task.budget}"> Rate </h5>&ndash;&gt;-->
+<!--                    <a href="#" class="btn btn-primary">See more</a>-->
+<!--                    <a class = "hidden cardLink" th:href = "@{/tasks/task( id = ${task.id} )}"></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+<!--          <div class = "card">-->
+<!--                <div class = "card-body">-->
+<!--                    <h5 class = "card-title" th:text = "${task.name}">Task name</h5>-->
+<!--                    <h6 class = "card-subtitle mb-2 text-muted">-->
+<!--                        <span th:each = "category:${task.categories}"-->
+<!--                              th:text = "${category.name} + ' '"-->
+<!--                        ></span>-->
+<!--                    </h6>-->
+<!--                    <p class="card-text" th:text = "${task.description}">Description.</p>-->
+<!--                    <p class="card-text" th:text = "${task.customer.name} + ', ' + ${task.rating}"> Customer </p>-->
+<!--                    <h5 class="card-text" th:text = "${task.budget} + ' rub'"> 5 000</h5>-->
+<!--&lt;!&ndash;                    <h5 class="card-text" th:text = "${task.budget}"> Rate </h5>&ndash;&gt;-->
+<!--                    <a href="#" class="btn btn-primary">See more</a>-->
+<!--                    <a class = "hidden cardLink" th:href = "@{/tasks/task( id = ${task.id} )}"></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
 </div>
 </body>
 </html>

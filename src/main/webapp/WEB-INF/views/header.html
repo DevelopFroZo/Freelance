@@ -20,10 +20,13 @@
                 <a class="nav-link" th:href="@{/}">All tasks</a>
             </li>
             <li sec:authorize = "isAuthenticated()">
-                <p class="navbar-text">
+<!--                <p class="navbar-text">-->
                     <a class="nav-link" th:href="@{/personal_account}">Personal account</a>
-                </p>
-                <form id = "logout-form" th:action = "@{/logout}" method = "post"></form>
+<!--                </p>-->
+<!--                <form id = "logout-form" th:action = "@{/logout}" method = "post"></form>-->
+            </li>
+            <li sec:authorize = "isAuthenticated()">
+                    <a class="nav-link" th:href="@{/rating_executors}">Rating executor</a>
             </li>
             <li sec:authorize = "isAuthenticated()">
                 <p class="navbar-text">

@@ -1,15 +1,26 @@
 let solutions_;
 
+async function chooseSolutionFunc( taskId, solutionId ){
+    const result = await API.tasks.setSolution( taskId, solutionId );
+
+    if( result === true )
+        window.open( "/", "_self" );
+    else
+        alert( "Something wrong" );
+}
+
 function fillModal( index ){
     const solution = solutions_[ index ];
     const executor = solution.executor;
     const rateUser = document.getElementById( "rateUser" );
+    const solutionLinksList = document.getElementById( "solutionLinksList" );
 
     document.getElementById( "solutionDescription" ).innerHTML = solution.description;
     document.getElementById( "solutionExecutorName" ).innerHTML = executor.name;
     document.getElementById( "solutionExecutorDescription" ).innerHTML = executor.description;
 
     rateUser.innerHTML = "";
+    solutionLinksList.innerHTML = "";
 
     for( let key in executor.rating )
         rateUser.innerHTML +=
@@ -17,10 +28,19 @@ function fillModal( index ){
                 <p class = "col-6">${key}</p>
                 <p class = "col-6">${executor.rating[ key ]}</p>
             </div>`;
+
+    for( let link of solution.links )
+        solutionLinksList.innerHTML +=
+            `<a href = "${link}">${link}</a>`;
+
+    const chooseSolution = document.getElementById( "chooseSolution" );
+    const taskId = document.getElementById( "taskId" ).value;
+
+    chooseSolution.onclick = () => chooseSolutionFunc( taskId, solution.id );
 }
 
 async function fillSolutions(){
-    if( solutions_.length === 1 && solutions_[0] === null )
+    if( solutions_.length === 0 )
         return document.getElementById( "solutionsEmpty" ).classList.remove( "hidden" );
 
     const userIds = solutions_.map( ( { executor: { id } } ) => id );
@@ -53,15 +73,6 @@ async function fillSolutions(){
             </div>`;
 }
 
-async function chooseSolutionFunc( taskId, solutionId ){
-    const result = await API.tasks.setSolution( taskId, solutionId );
-
-    if( result === true )
-        window.open( "/", "_blank" );
-    else
-        alert( "Something wrong" );
-}
-
 async function index(){
     const urlSearchParams = new URLSearchParams( window.location.search );
     const id = urlSearchParams.get( "id" );
@@ -82,12 +93,11 @@ async function index(){
         const taskCustomerId = parseInt( document.getElementById( "taskCustomerId" ).value );
 
         if( taskCustomerId === currentUser.id ){
-            const taskId = parseInt( document.getElementById( "taskId" ).value );
             const chooseSolution = document.getElementById( "chooseSolution" );
 
-            chooseSolution.addEventListener( "click", () => chooseSolutionFunc( taskId, taskCustomerId ) );
             chooseSolution.classList.remove( "hidden" );
         }
+        else document.getElementById( "addSolution" ).classList.remove( "hidden" );
 
         fillSolutions();
     }

@@ -12,7 +12,9 @@ public class TaskIdToSolutions implements Converter<Long, List<Solution>>{
     private SolutionRepository solutionRepository;
 
     @Override
-    public List<Solution> convert(Long taskId ){
+    public List<Solution> convert( Long taskId ){
+        System.out.println( taskId );
+
         return this.solutionRepository.findAllByTaskId( taskId );
     }
 }

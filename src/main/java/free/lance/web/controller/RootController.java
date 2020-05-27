@@ -1,7 +1,10 @@
 package free.lance.web.controller;
 
+import free.lance.domain.model.ExecutorRating;
+import free.lance.domain.response.ExecutorRatingExtended;
 import free.lance.domain.response.TaskCard;
 import free.lance.domain.model.User;
+import free.lance.domain.service.ExecutorRatingService;
 import free.lance.domain.service.TaskService;
 import free.lance.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.JpaSort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class RootController{
@@ -29,6 +35,9 @@ public class RootController{
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ExecutorRatingService executorRatingService;
 
     @RequestMapping( value = "/" )
     public String index(
@@ -87,5 +96,23 @@ public class RootController{
         SecurityContextHolder.getContext().setAuthentication( auth );
 
         return "redirect:/";
+    }
+
+    @RequestMapping( value = "personal_account" )
+    @PreAuthorize( "hasRole( 'ROLE_USER' )" )
+    public String personalAccount(
+            Model model,
+            Authentication authentication
+    ){
+        Set<Long> userIds = new HashSet<>();
+        User current = (User) authentication.getPrincipal();
+
+        userIds.add( current.getId() );
+        Set<ExecutorRatingExtended> executorsRatingsExtended = this.executorRatingService.findAllByUserIds( userIds );
+
+        model.addAttribute( "user", current );
+        model.addAttribute( "executorRating", executorsRatingsExtended );
+
+        return "personalAccount";
     }
 }

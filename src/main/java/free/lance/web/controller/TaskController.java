@@ -92,8 +92,6 @@ public class TaskController{
             @RequestParam( "solution_id" ) Solution solution,
             Authentication authentication
     ){
-        User current = (User) authentication.getPrincipal();
-
         this.taskService.setSolution( task.getId(), solution );
         this.taskService.close( task.getId() );
         this.userService.incBalance( solution.getExecutor().getId(), Long.valueOf( task.getBudget() ) );

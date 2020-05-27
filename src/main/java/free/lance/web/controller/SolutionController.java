@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -24,9 +25,11 @@ public class SolutionController{
     @RequestMapping( value = "get_by_task_id" )
     @PreAuthorize( "hasRole( 'ROLE_USER' )" )
     @ResponseBody
-    public Set<Solution> getByTask(
-            @RequestParam( "task_id" ) Set<Solution> solutions
+    public List<Solution> getByTask(
+            @RequestParam( "task_id" ) Long taskId
     ){
+        List<Solution> solutions = this.solutionService.findAllByTaskId( taskId );
+
         return solutions;
     }
 
@@ -67,7 +70,7 @@ public class SolutionController{
 
         Solution solution_ = this.solutionService.findOneByTaskIdAndUserId( task.getId(), executor.getId() );
 
-        if( solution != null )
+        if( solution_ != null )
             return "redirect:/tasks/task?id=" + task.getId() + "&error=already_choosen";
 
         solution.setTask( task );

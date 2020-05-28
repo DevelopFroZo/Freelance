@@ -2,11 +2,8 @@ package free.lance.web.controller;
 
 import free.lance.domain.model.Solution;
 import free.lance.domain.model.Task;
-import free.lance.domain.response.ExecutorRatingExtended;
-import free.lance.domain.response.ExecutorRatingExtended2;
-import free.lance.domain.response.TaskCard;
+import free.lance.domain.response.*;
 import free.lance.domain.model.User;
-import free.lance.domain.response.UserExtended;
 import free.lance.domain.service.ExecutorRatingService;
 import free.lance.domain.service.SolutionService;
 import free.lance.domain.service.TaskService;
@@ -17,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.JpaSort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -92,6 +89,11 @@ public class RootController{
     ){
         if( errors.hasErrors() )
             return "register";
+
+        List<Integer> initialCustomerRating = new ArrayList<>();
+
+        initialCustomerRating.add( 0 );
+        user.setCustomerRating( initialCustomerRating );
 
         boolean isSaved = this.userService.save( user );
 
